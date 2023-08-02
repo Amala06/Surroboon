@@ -94,8 +94,10 @@ int count=0;
         itemCount: 5,
         itemBuilder: (context, index) {
           return Padding(
+            
             padding: EdgeInsets.symmetric(vertical: 8.0,horizontal: 10),             child: Container(
               color: Color.fromARGB(255, 250, 247, 248),
+              
               child: ListTile(
                 
                  leading: CircleAvatar(

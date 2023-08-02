@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:suro/home_carousel.dart';
 import 'package:suro/list.dart';
+import 'package:suro/profile.dart';
 import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
+      // home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
+      home:  Profile(),
     );
   }
 }
