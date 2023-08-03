@@ -5,6 +5,7 @@ import 'package:suro/home_carousel.dart';
 import 'package:suro/list.dart';
 import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:suro/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       // home: const SafeArea(child: ChatHome()),
-      home:  SafeArea(child: LoginScreen()),
+      home:  SafeArea(child: Splash()),
     );
   }
 }
