@@ -71,23 +71,32 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                 SizedBox(
                   height: size.height / 20,
                 ),
-                Container(
-                    alignment: Alignment.centerLeft,
-                    width: size.width / 1.2,
-                    child: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_back_ios))),
                 SizedBox(
                   height: size.height / 50,
                 ),
                 Container(
                   width: size.width / 1.1,
-                  child: Text(
-                    "Empowering Parenthood: Register Now for Surrogate Finding Services!",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.pink,
-                    ),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Colors.black,
+                          size: 25,
+                        ),
+                      ),
+                      Text(
+                        "Empowering Parenthood: Register Now for Surrogate Finding Services!",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.pink,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(

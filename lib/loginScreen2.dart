@@ -54,41 +54,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   height: size.height / 20,
-                  // ),
-                  // Container(
-                  //   alignment: Alignment.centerLeft,
-                  //   width: size.width / 1.2,
-                  //     child: IconButton(onPressed: (){},
-                  //         icon: Icon(Icons.arrow_back_ios))
-                  //         ),
-                  //         SizedBox(
-                  //           height: size.height / 50,
-                  //         ),
-                  // Container(
-                  //   width: size.width / 1.3,
-
-                  //   child: Text(
-                  //     "Welcome",
-                  //     style: TextStyle(
-                  //       fontSize: 34,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: size.width / 1.3,
-                  //   child: Text(
-                  //     "Sign In to Continue!",
-                  //     style: TextStyle(
-                  //       color: Colors.grey[700],
-                  //       fontSize: 25,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-
+                
                   SizedBox(
                     height: size.height / 10,
                   ),

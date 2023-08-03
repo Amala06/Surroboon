@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:suro/home_carousel.dart';
+import 'package:suro/lawsOrders.dart';
 import 'package:suro/list.dart';
 import 'package:suro/login_screen.dart';
 import 'package:suro/profile.dart';
@@ -112,10 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
-              title: Text('Drawer Item 1'),
+              title: Text('Laws and Orders'),
               onTap: () {
                 _onDrawerItemClicked();
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TermsConditionsPage()));
               },
             ),
             ListTile(
