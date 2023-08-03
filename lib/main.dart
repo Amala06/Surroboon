@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:suro/chathome.dart';
+import 'package:suro/customUI/loginscreen.dart';
 import 'package:suro/home_carousel.dart';
 import 'package:suro/lawsOrders.dart';
 import 'package:suro/list.dart';
@@ -6,6 +8,7 @@ import 'package:suro/login_screen.dart';
 import 'package:suro/profile.dart';
 import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:suro/splash.dart';
 import 'package:suro/user_identity.dart';
 
 void main() {
@@ -25,12 +28,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
-            color: Colors.pink, // Change the color of the drawer icon here
+            color: const Color.fromARGB(
+                255, 213, 114, 147), // Change the color of the drawer icon here
           ),
         ),
       ),
-      home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
-      // home: LoginScreen(),
+      home: const SafeArea(child: Splash()),
     );
   }
 }
@@ -45,14 +48,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   void _onDrawerItemClicked() {
     // TODO: Implement the functionality for the selected drawer item.
     // Example: You can use Navigator to navigate to another page.
@@ -176,7 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
             // height: 250,
             // Add the Expanded widget here
             Search(),
-
             // ),
             SizedBox(
               height: 10,
