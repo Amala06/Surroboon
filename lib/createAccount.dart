@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -33,8 +33,8 @@ class _CreateAccountState extends State<CreateAccount> {
       if (picked != null && picked != selectedDate) {
         setState(() {
           selectedDate = picked;
-          _dobController.text = DateFormat('dd-MM-yyyy').format(
-              selectedDate!); // Set the selected date to the date of birth TextField
+          _dobController.text =
+              ""; // Set the selected date to the date of birth TextField
         });
       }
     }
@@ -283,35 +283,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           Column(
                             // mainAxisAlignment: MainAxisAlignment.center,
                             // crossAxisAlignment: CrossAxisAlignment.baseline,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () => _selectDate(context),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors
-                                      .transparent, // Set the background color to transparent
-                                  elevation: 0,
-                                  padding: EdgeInsets.all(
-                                      0), // Set the elevation to 0 to remove the button's shadow
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.calendar_today,
-                                        color: Colors
-                                            .purple), // Add the calendar icon
-                                    SizedBox(
-                                        width:
-                                            8), // Add some space between the icon and text
-                                    Text(
-                                      selectedDate == null
-                                          ? ''
-                                          : DateFormat('yyyy-MM-dd')
-                                              .format(selectedDate!),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            children: [],
                           ),
                         ],
                       ),
