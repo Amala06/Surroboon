@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:suro/profile.dart';
+
 class PizzaItem {
   String id;
   String name;
@@ -31,7 +34,6 @@ class PizzaItem {
   });
 }
 
-
 class Listsmall extends StatefulWidget {
   const Listsmall({Key? key}) : super(key: key);
 
@@ -40,15 +42,15 @@ class Listsmall extends StatefulWidget {
 }
 
 class _ListsmallState extends State<Listsmall> {
+  // final PizzaItem userData;
+  // _ListsmallState({required this.userData});
   List<PizzaItem> items = []; // List to store the fetched data
-int count=0;
+  int count = 0;
   @override
   void initState() {
     super.initState();
     fetchDataFromAPI();
   }
-  
-
 
   Future<void> fetchDataFromAPI() async {
     final response = await http
@@ -88,50 +90,79 @@ int count=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: ListView.builder(
-        
         itemCount: 5,
         itemBuilder: (context, index) {
           return Padding(
-            
-            padding: EdgeInsets.symmetric(vertical: 8.0,horizontal: 10),             child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+            child: Container(
               color: Color.fromARGB(255, 250, 247, 248),
-              
               child: ListTile(
-                
-                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(items[index].pic),
-                  radius: 35,
-                ),
-                // img:Image.network(items[index].pic),
-                title: Text(items[index].name,style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold),),
-                
-                 subtitle: Column(
-                   children: [
-                     Row(
-                       children: [
-                         Text(items[index].name),
-                         Spacer(),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(items[index].pic),
+                    radius: 35,
+                  ),
+                  // img:Image.network(items[index].pic),
+                  title: Text(
+                    items[index].name,
+                    style: const TextStyle(
+                        color: Colors.pink, fontWeight: FontWeight.bold),
+                  ),
+                  // title: InkWell(
+                  //   onTap: () {
+                  //     Navigator.pop(context);
+                  //     Text(
+                  //       items[index].name,
+                  //       style: TextStyle(
+                  //           color: Colors.pink, fontWeight: FontWeight.bold),
+                  //     );
+                  //   },
+                  // ),
+                  subtitle: Column(
+                    children: [
+                      Row(
+                        children: [
                           Text(items[index].name),
-            
-                       ],
-                
-            
-                // Add more widgets to display additional data from the API
-              ),
-                  Row(
-                       children: [
-                         Text(items[index].name),
-                         Spacer(),
+                          Spacer(),
                           Text(items[index].name),
-            
-                       ],
-                
-            
-                // Add more widgets to display additional data from the API
-              ),  ],
-                 )),
+                        ],
+
+                        // Add more widgets to display additional data from the API
+                      ),
+                      Row(
+                        children: [
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     // Navigate to the next page when the link is tapped.
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => Profile()));
+                          //   },
+                          //   child: Text("Explore.."),
+                          // ),
+                          // Spacer(),
+                          Text(items[index].name),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigate to the next page when the link is tapped.
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profile(
+                                            pizzaName: items[index].name,
+                                            pizzaBest: items[index].bestSell,
+                                          )));
+                            },
+                            child: Text("Explore.."),
+                          ),
+                        ],
+
+                        // Add more widgets to display additional data from the API
+                      ),
+                    ],
+                  )),
             ),
           );
         },

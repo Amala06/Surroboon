@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:suro/list.dart';
 
 class Profile extends StatelessWidget {
+  final String pizzaName;
+  final bool pizzaBest;
+
+  Profile({required this.pizzaName, required this.pizzaBest});
   List imgs = [""];
 
   @override
@@ -41,7 +46,7 @@ class Profile extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -52,7 +57,7 @@ class Profile extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "Dianna Samuel",
+                        '$pizzaName',
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -63,7 +68,7 @@ class Profile extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "California, USA",
+                        '$pizzaBest',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
@@ -129,7 +134,6 @@ class Profile extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      
                       children: [
                         Icon(
                           CupertinoIcons.eye_fill,

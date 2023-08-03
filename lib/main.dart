@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:suro/home_carousel.dart';
 import 'package:suro/list.dart';
+import 'package:suro/login_screen.dart';
 import 'package:suro/profile.dart';
 import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:suro/user_identity.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -25,8 +28,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
-      home:  Profile(),
+      home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
+      // home: LoginScreen(),
     );
   }
 }
@@ -57,13 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-
   @override
   Widget build(BuildContext context) {
-        double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Row(
@@ -83,8 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // Place the bell icon at the end of the AppBar
             IconButton(
-              icon: Icon(Icons.notifications),
+              icon: Icon(Icons.login),
               onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => user_identity()));
                 // TODO: Implement the functionality for the bell icon here
                 // For example, show notifications or perform a specific action.
               },
@@ -126,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-     bottomNavigationBar: CurvedNavigationBar(
+      bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
         height: 60.0,
@@ -149,8 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         letIndexChange: (index) => true,
       ),
-
-  body: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -160,28 +162,30 @@ class _MyHomePageState extends State<MyHomePage> {
             // Wrap the CarouselSlider with a Container and specify a fixed height
 
             Container(
-              height:200 , // Set the desired height for the carousel
+              height: 200, // Set the desired height for the carousel
               child: ComplicatedImageDemo(),
             ),
             SizedBox(
               height: 30,
             ),
             // Expanded(
-              // height: 250,
-              // Add the Expanded widget here
-               Search(),
+            // height: 250,
+            // Add the Expanded widget here
+            Search(),
+
             // ),
-              SizedBox(
+            SizedBox(
               height: 10,
             ),
+            // LoginScreen(),
+            SizedBox(height: 10),
             Expanded(child: Listsmall()),
-            
+
             // Listsmall()
-          //  Search(),
+            //  Search(),
           ],
         ),
       ),
-
     );
   }
 }
