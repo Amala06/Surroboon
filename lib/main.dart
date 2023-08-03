@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:suro/chathome.dart';
+import 'package:suro/customUI/loginscreen.dart';
 import 'package:suro/home_carousel.dart';
 import 'package:suro/list.dart';
 import 'package:suro/search.dart';
@@ -24,7 +26,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SafeArea(child: MyHomePage(title: 'Surroboon')),
+      // home: const SafeArea(child: ChatHome()),
+      home:  SafeArea(child: LoginScreen()),
     );
   }
 }
@@ -39,14 +42,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   void _onDrawerItemClicked() {
     // TODO: Implement the functionality for the selected drawer item.
     // Example: You can use Navigator to navigate to another page.
@@ -55,13 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-
   @override
   Widget build(BuildContext context) {
-        double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Row(
@@ -124,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-     bottomNavigationBar: CurvedNavigationBar(
+      bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
         height: 60.0,
@@ -147,8 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         letIndexChange: (index) => true,
       ),
-
-  body: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -158,28 +150,27 @@ class _MyHomePageState extends State<MyHomePage> {
             // Wrap the CarouselSlider with a Container and specify a fixed height
 
             Container(
-              height:200 , // Set the desired height for the carousel
+              height: 200, // Set the desired height for the carousel
               child: ComplicatedImageDemo(),
             ),
             SizedBox(
               height: 30,
             ),
             // Expanded(
-              // height: 250,
-              // Add the Expanded widget here
-               Search(),
+            // height: 250,
+            // Add the Expanded widget here
+            Search(),
             // ),
-              SizedBox(
+            SizedBox(
               height: 10,
             ),
             Expanded(child: Listsmall()),
-            
+
             // Listsmall()
-          //  Search(),
+            //  Search(),
           ],
         ),
       ),
-
     );
   }
 }
