@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/createAccount.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: const Icon(
                             Icons.arrow_back_ios_new,
-                            color: Colors.black,
+                            color: iconcolor,
                             size: 25,
                           ),
                         ),
@@ -47,9 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           "Welcome",
                           style: TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              color: heading),
                         ),
                       ],
                     ),
@@ -118,9 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => CreateAccount())),
                     child: Text(
-                      "Create Account",
+                      "Sign Up",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: iconcolor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -164,13 +165,13 @@ class _LoginScreenState extends State<LoginScreen> {
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Colors.blue,
+          color: backgroundC,
         ),
         alignment: Alignment.center,
         child: Text(
-          "Login",
+          "Sign In",
           style: TextStyle(
-            color: Colors.white,
+            color: heading,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -187,9 +188,9 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon,color: iconcolor,),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: backgroundC),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),

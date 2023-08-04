@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:suro/constants.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -72,34 +74,48 @@ class _CreateAccountState extends State<CreateAccount> {
                   height: size.height / 20,
                 ),
                 Container(
-                    alignment: Alignment.centerLeft,
-                    width: size.width / 1.2,
-                    child: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_back_ios))),
-                SizedBox(
-                  height: size.height / 50,
-                ),
-                Container(
                   width: size.width / 1.1,
-                  child: Text(
-                    "Empowering Parenthood: Register Now for Surrogate Finding Services!",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.pink,
-                    ),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.arrow_back_ios_new,
+                          color: iconcolor,
+                          size: 25,
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.all(10)),
+                      Expanded(
+                        child: Text(
+                          "Empowering Parenthood: Register Now for Surrogate Finding Services!",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            color: heading,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Container(
-                  width: size.width / 1.1,
-                  child: Text(
-                    "Register here",
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
+                Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                Row(
+                  // width: size.width / 1.1,
+                  children: [
+                    // Padding(padding: EdgeInsets.all(35)),
+                    //  padding: EdgeInsets.all(16.0),
+                    Text(
+                      "Register here",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w100,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 SizedBox(
                   height: size.height / 20,
@@ -130,7 +146,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: heading,
                             ),
                           )
                         ],
@@ -147,7 +163,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -165,7 +181,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -189,7 +205,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -207,7 +223,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -231,7 +247,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -249,7 +265,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -272,45 +288,12 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(width: 20),
                               field(size / 2, "dd-mm-yyyy", Icons.abc,
                                   _dobController),
-                            ],
-                          ),
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            // crossAxisAlignment: CrossAxisAlignment.baseline,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () => _selectDate(context),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors
-                                      .transparent, // Set the background color to transparent
-                                  elevation: 0,
-                                  padding: EdgeInsets.all(
-                                      0), // Set the elevation to 0 to remove the button's shadow
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.calendar_today,
-                                        color: Colors
-                                            .purple), // Add the calendar icon
-                                    SizedBox(
-                                        width:
-                                            8), // Add some space between the icon and text
-                                    Text(
-                                      selectedDate == null
-                                          ? ''
-                                          : DateFormat('yyyy-MM-dd')
-                                              .format(selectedDate!),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
                           ),
                         ],
@@ -327,7 +310,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(width: 20),
@@ -344,7 +327,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(width: 20),
@@ -385,7 +368,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: heading,
                             ),
                           )
                         ],
@@ -402,7 +385,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(width: 20),
@@ -427,7 +410,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(width: 20),
@@ -475,7 +458,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: heading,
                             ),
                           )
                         ],
@@ -492,7 +475,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -510,7 +493,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: heading,
                                 ),
                               ),
                               SizedBox(
@@ -538,11 +521,11 @@ class _CreateAccountState extends State<CreateAccount> {
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Text(
-                      "Login",
+                      "Sign In",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: heading,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -559,15 +542,15 @@ class _CreateAccountState extends State<CreateAccount> {
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Colors.purple,
+          color: backgroundC,
         ),
         alignment: Alignment.center,
         child: Text(
           "Create Account",
           style: TextStyle(
-            color: Colors.white,
+            color: iconcolor,
             fontSize: 18,
-            fontWeight: FontWeight.w200,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -583,10 +566,13 @@ class _CreateAccountState extends State<CreateAccount> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(
+            icon,
+            color: iconcolor,
+          ),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.grey,
+            color: backgroundC,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

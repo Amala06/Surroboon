@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:suro/constants.dart';
 
 class CreateAccountSurro extends StatefulWidget {
   @override
@@ -71,9 +72,6 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                 SizedBox(
                   height: size.height / 20,
                 ),
-                SizedBox(
-                  height: size.height / 50,
-                ),
                 Container(
                   width: size.width / 1.1,
                   child: Row(
@@ -84,31 +82,39 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                         },
                         child: const Icon(
                           Icons.arrow_back_ios_new,
-                          color: Colors.black,
+                          color: iconcolor,
                           size: 25,
                         ),
                       ),
-                      Text(
-                        "Empowering Parenthood: Register Now for Surrogate Finding Services!",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.pink,
+                      Padding(padding: EdgeInsets.all(10)),
+                      Expanded(
+                        child: Text(
+                          "Become a Surrogate: Connect with Loving Parents Through Registration",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            color: iconcolor,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  width: size.width / 1.1,
-                  child: Text(
-                    "Register here",
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
+                Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                Row(
+                  // width: size.width / 1.1,
+                  children: [
+                    // Padding(padding: EdgeInsets.all(35)),
+                    //  padding: EdgeInsets.all(16.0),
+                    Text(
+                      "Register here",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w100,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 SizedBox(
                   height: size.height / 20,
@@ -135,11 +141,11 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Basic Information",
+                            "Personal Information",
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: iconcolor,
                             ),
                           )
                         ],
@@ -152,17 +158,17 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'First Name',
+                                'Full Name',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(size / 2, "FirstName", Icons.account_box,
+                              field(size / 2, "Full Name", Icons.account_box,
                                   _fname),
                             ],
                           ),
@@ -170,18 +176,18 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Last Name',
+                                'Date of Birth',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(size / 2, "LastName", Icons.account_box,
-                                  _lname),
+                              field(size / 2, "Date of Birth",
+                                  Icons.calendar_month, _lname),
                             ],
                           ),
                         ],
@@ -198,7 +204,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
@@ -216,7 +222,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
@@ -236,130 +242,36 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Primary Language',
+                                'Marital Status',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(size / 2, "Primary Language",
-                                  Icons.language, _langugae),
+                              field(size / 2, "Marital Status",
+                                  Icons.cloud_upload, _langugae),
                             ],
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'City',
+                                'Number of children',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(
-                                  size / 2, "City", Icons.location_city, _city),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            children: [
-                              const Text(
-                                'Date of Birth:',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
-                                ),
-                              ),
-                              SizedBox(width: 20),
-                              field(size / 2, "dd-mm-yyyy", Icons.abc,
-                                  _dobController),
-                            ],
-                          ),
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            // crossAxisAlignment: CrossAxisAlignment.baseline,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () => _selectDate(context),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors
-                                      .transparent, // Set the background color to transparent
-                                  elevation: 0,
-                                  padding: EdgeInsets.all(
-                                      0), // Set the elevation to 0 to remove the button's shadow
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.calendar_today,
-                                        color: Colors
-                                            .purple), // Add the calendar icon
-                                    SizedBox(
-                                        width:
-                                            8), // Add some space between the icon and text
-                                    Text(
-                                      selectedDate == null
-                                          ? ''
-                                          : DateFormat('yyyy-MM-dd')
-                                              .format(selectedDate!),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Gender:',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
-                                ),
-                              ),
-                              SizedBox(width: 20),
-                              genderRadioOption('Heterosexual', 'Heterosexual'),
-                              genderRadioOption('LGBTQIA+', 'LGBTQIA+'),
-                              genderRadioOption('other', 'Other'),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sexual orientation',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
-                                ),
-                              ),
-                              SizedBox(width: 20),
-                              genderRadioOption('male', 'Male'),
-                              genderRadioOption('female', 'Female'),
-                              genderRadioOption('other', 'Other'),
+                              field(size / 2, "Number of children",
+                                  Icons.child_care, _city),
                             ],
                           ),
                         ],
@@ -390,65 +302,80 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Your Surrogacy & Egg Donation Requirements",
+                            "Health and Medical History",
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: iconcolor,
                             ),
                           )
                         ],
                       ),
                       const Padding(padding: EdgeInsets.all(10)),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Which services do you think you might need?',
+                                'Height',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
-                              SizedBox(width: 20),
-                              genderRadioOption(
-                                  'Surrogacy & Egg Donor Services',
-                                  'Surrogacy & Egg Donor Services'),
-                              genderRadioOption('Surrogacy Services Only',
-                                  'Surrogacy Services Only'),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(
+                                  size / 2, "Height", Icons.height, _langugae),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Weight',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w200,
+                                  color: iconcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(
+                                  size / 2, "Weight", Icons.line_weight, _city),
                             ],
                           ),
                         ],
                       ),
                       SizedBox(height: 20),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Timing to Begin',
+                                'Pregnancy Complications(if any)',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
-                              SizedBox(width: 20),
-                              genderRadioOption(
-                                  'As soon as possible', 'As soon as possible'),
-                              genderRadioOption('Within the next 6 months',
-                                  'Within the next 6 months'),
-                              genderRadioOption('Within the next year',
-                                  'Within the next year'),
-                              genderRadioOption(
-                                  'Not sure, I would like to know more',
-                                  'Not sure, I would like to know more'),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(
+                                  size,
+                                  "Complications(if any mention else type NA)",
+                                  Icons.pregnant_woman,
+                                  _langugae),
                             ],
                           ),
                         ],
@@ -480,11 +407,11 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Create Password",
+                            "Reproductive Health",
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                              color: iconcolor,
                             ),
                           )
                         ],
@@ -497,46 +424,248 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Password',
+                                'Menstrual History and Regularity',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(
-                                  size / 2, "Password", Icons.lock, _password),
+                              field(size, "Menstrual History and Regularity",
+                                  Icons.history, _password),
                             ],
                           ),
+                        ],
+                      ),
+                      // SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Confirm Password',
+                                'Fertility Evalution',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w200,
-                                  color: Colors.pink,
+                                  color: iconcolor,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
-                              field(size / 2, "Confirm Password", Icons.lock,
+                              field(size, "Fertility Evalution", Icons.egg,
                                   _confirmPassword),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'History of any fertility treatments or IVF cycles(if any)',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w200,
+                                  color: iconcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(size, "Mention or else type NA",
+                                  Icons.history, _langugae),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(
                   height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 4.0,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Lifestyle and Habits",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold,
+                              color: iconcolor,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Padding(padding: EdgeInsets.all(10)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Diet and Excersice Habit',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w200,
+                                  color: iconcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(size, "diet and excersice", Icons.food_bank,
+                                  _password),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Use of alcohol, tobacco, or recreational drug',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w200,
+                                  color: iconcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(
+                                  size,
+                                  "Use of alcohol, tobacco, or recreational drug",
+                                  Icons.no_drinks,
+                                  _confirmPassword),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'History of any mental health issues',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w200,
+                                  color: iconcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              field(size, "History of any mental health issues",
+                                  Icons.health_and_safety, _langugae),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 4.0,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Motivation and Expectation",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold,
+                              color: iconcolor,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Padding(padding: EdgeInsets.all(10)),
+                      Wrap(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Expectation for surrogacy process and relationship with the intended parents',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w200,
+                                      color: iconcolor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  field(size, "mention or else type NA",
+                                      Icons.child_care, _password),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(height: 10),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: size.height / 20,
@@ -547,11 +676,11 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Text(
-                      "Login",
+                      "Sign In",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: heading,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -568,15 +697,15 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Colors.purple,
+          color: backgroundC,
         ),
         alignment: Alignment.center,
         child: Text(
           "Create Account",
           style: TextStyle(
-            color: Colors.white,
+            color: iconcolor,
             fontSize: 18,
-            fontWeight: FontWeight.w200,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -592,10 +721,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon,color: iconcolor,),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.grey,
+            color: backgroundC,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

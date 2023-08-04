@@ -153,6 +153,7 @@ class _ListsmallState extends State<Listsmall> {
                                       builder: (context) => Profile(
                                             pizzaName: items[index].name,
                                             pizzaBest: items[index].bestSell,
+                                            pizzapic: items[index].pic,
                                           )));
                             },
                             child: Text("Explore.."),

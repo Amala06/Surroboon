@@ -10,6 +10,7 @@ import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:suro/splash.dart';
 import 'package:suro/user_identity.dart';
+import 'constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,8 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
-            color: const Color.fromARGB(
-                255, 213, 114, 147), // Change the color of the drawer icon here
+            color: iconcolor, // Change the color of the drawer icon here
           ),
         ),
       ),
@@ -72,8 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   widget.title,
                   style: TextStyle(
-                    color: Colors
-                        .pink, // Change the color of the app bar title here
+                    color: heading,
+                    fontWeight: FontWeight
+                        .bold, // Change the color of the app bar title here
                   ),
                 ),
               ),
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.pink, // Change the color of the drawer here
+                color: heading, // Change the color of the drawer here
               ),
               child: Text(
                 'Drawer Header',
@@ -139,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Icon(Icons.call_split, size: 30),
           Icon(Icons.perm_identity, size: 30),
         ],
-        color: const Color.fromARGB(255, 240, 79, 133),
+        color: iconcolor,
         buttonBackgroundColor: Color.fromARGB(255, 255, 255, 255),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         animationCurve: Curves.easeInOut,

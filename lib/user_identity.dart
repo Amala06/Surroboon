@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/loginScreen2.dart';
 import 'package:suro/login_screen.dart';
 
@@ -25,7 +26,7 @@ class user_identity extends StatelessWidget {
                       },
                       child: const Icon(
                         Icons.arrow_back_ios_new,
-                        color: Colors.purple,
+                        color: iconcolor,
                         size: 25,
                       ),
                     ),
@@ -36,9 +37,9 @@ class user_identity extends StatelessWidget {
                         Text(
                           "User Indentity",
                           style: TextStyle(
-                            fontSize: 22.0,
+                            fontSize: 25.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.pink,
+                            color: heading,
                           ),
                         ),
                       ],
@@ -53,7 +54,7 @@ class user_identity extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 8.0),
             padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: backgroundC,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
@@ -83,9 +84,9 @@ class user_identity extends StatelessWidget {
                         child: Text(
                           "Parent",
                           style: TextStyle(
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.pink,
+                            color: heading,
                           ),
                         ),
                       ),
@@ -102,7 +103,7 @@ class user_identity extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 8.0),
             padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: backgroundC,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
@@ -132,9 +133,9 @@ class user_identity extends StatelessWidget {
                         child: Text(
                           "Surrogate",
                           style: TextStyle(
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.pink,
+                            color: iconcolor,
                           ),
                         ),
                       ),

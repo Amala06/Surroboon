@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/createAccount.dart';
+import 'package:suro/createAccountSurro.dart';
 
 class LoginScreen2 extends StatefulWidget {
   const LoginScreen2({super.key});
@@ -39,7 +42,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                           },
                           child: const Icon(
                             Icons.arrow_back_ios_new,
-                            color: Colors.black,
+                            color: iconcolor,
                             size: 25,
                           ),
                         ),
@@ -47,14 +50,13 @@ class _LoginScreen2State extends State<LoginScreen2> {
                         Text(
                           "Welcome",
                           style: TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              color: iconcolor),
                         ),
                       ],
                     ),
                   ),
-                
                   SizedBox(
                     height: size.height / 10,
                   ),
@@ -75,18 +77,16 @@ class _LoginScreen2State extends State<LoginScreen2> {
                     height: size.height / 10,
                   ),
                   customButton(size),
-
                   SizedBox(
                     height: size.height / 40,
                   ),
-
                   GestureDetector(
-                    onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => CreateAccount())),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => CreateAccountSurro())),
                     child: Text(
-                      "Create Account",
+                      "Sign Up",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: iconcolor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -98,45 +98,18 @@ class _LoginScreen2State extends State<LoginScreen2> {
 
   Widget customButton(Size size) {
     return GestureDetector(
-      // onTap: () {
-      //   if(_email.text.isNotEmpty && _password.text.isNotEmpty)
-      //   {
-      //     setState(() {
-      //       isLoading=true;
-      //     });
-      //     logIn(_email.text, _password.text).then((user){
-      //       if(user!=null)
-      //       {
-      //         print("Login Successfully");
-      //         setState(() {
-      //           isLoading=false;
-      //         });
-      //       }
-      //       else
-      //       {
-      //         print("Login Failed");
-      //         setState(() {
-      //           isLoading=false;
-      //         });
-      //       }
-      //     });
-      //   }
-      //   else{
-      //     print("Please enter fields");
-      //   }
-      //},
       child: Container(
         height: size.height / 14,
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Colors.blue,
+          color: backgroundC,
         ),
         alignment: Alignment.center,
         child: Text(
-          "Login",
+          "Sign In",
           style: TextStyle(
-            color: Colors.white,
+            color: heading,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -153,7 +126,10 @@ class _LoginScreen2State extends State<LoginScreen2> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(
+            icon,
+            color: iconcolor,
+          ),
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey),
           border: OutlineInputBorder(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/list.dart';
 
 class Search extends StatefulWidget {
@@ -11,12 +13,17 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   final List<String> items = [
     'Age',
-    'Nationality',
-    'Food Preference',
     'Price',
     'Locality',
     'Ethencity',
+
+    // Add more items as needed
+  ];
+
+  final List<String> items1 = [
     'Past Record',
+    'Nationality',
+    'Food Preference',
     // Add more items as needed
   ];
 
@@ -45,8 +52,7 @@ class _SearchState extends State<Search> {
                       decoration: InputDecoration(
                         hintText: 'Enter your preferred location ',
                         hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 250, 97,
-                                148)), // Change hint text color to pink
+                            color: heading), // Change hint text color to pink
                         border: InputBorder.none, // Remove the default border
                       ),
                     ),
@@ -57,7 +63,7 @@ class _SearchState extends State<Search> {
                     // Perform search functionality here
                   },
                   icon: Icon(Icons.search),
-                  color: Colors.pink, // Customize the color of the search icon
+                  color: iconcolor, // Customize the color of the search icon
                 ),
               ],
             ),
@@ -72,8 +78,8 @@ class _SearchState extends State<Search> {
               // Use GridView.builder
               shrinkWrap:
                   true, // This is important to allow the GridView to work inside a Column
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // Number of columns in the grid
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4, // Number of columns in the grid
                 crossAxisSpacing: 8.0, // Spacing between columns
                 mainAxisSpacing: 8.0, // Spacing between rows
                 mainAxisExtent: 38,
@@ -82,13 +88,9 @@ class _SearchState extends State<Search> {
               itemBuilder: (context, index) {
                 // Build each grid item
                 final isSelected = index == _selectedItemIndex;
-                final color = isSelected
-                    ? Colors.pink
-                    : Color.fromARGB(255, 249, 208, 225);
+                final color = isSelected ? heading : backgroundC;
 
-                final textcolor= isSelected
-                    ? Colors.white
-                    : Color.fromARGB(255, 6, 1, 3);
+                final textcolor = isSelected ? backgroundC : heading;
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -103,7 +105,57 @@ class _SearchState extends State<Search> {
                         child: Text(
                           items[index],
                           style: TextStyle(
-                              color: textcolor), // Customize the text color
+                              color: textcolor,
+                              fontWeight:
+                                  FontWeight.bold), // Customize the text color
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            color: Colors
+                .white, // Set the background color of the GridView.builder to white
+            child: GridView.builder(
+              // Use GridView.builder
+              shrinkWrap:
+                  true, // This is important to allow the GridView to work inside a Column
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // Number of columns in the grid
+                crossAxisSpacing: 8.0, // Spacing between columns
+                mainAxisSpacing: 8.0, // Spacing between rows
+                mainAxisExtent: 38,
+              ),
+              itemCount: items1.length, // Total number of items in the grid
+              itemBuilder: (context, index) {
+                // Build each grid item
+                final isSelected = index == _selectedItemIndex;
+                final color = isSelected ? heading : backgroundC;
+
+                final textcolor = isSelected ? backgroundC : heading;
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      _selectedItemIndex = index;
+                    });
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      color: color, // Background color of each grid item
+                      child: Center(
+                        child: Text(
+                          items1[index],
+                          style: TextStyle(
+                              color: textcolor,
+                              fontWeight:
+                                  FontWeight.bold), // Customize the text color
                         ),
                       ),
                     ),
