@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:suro/chatInit.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -17,6 +20,50 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _confirmPassword = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool isLoading = false;
+
+// Inside the form submission handler
+  void registerUser() async {
+    final url = 'https://surodishibackend-production.up.railway.app/api/user/';
+    final userData = {
+      'name': _fname.text,
+      'email': _email.text,
+      'gender': "female",
+      'phoneNo': _cellphone.text,
+      'city': _city.text,
+      'dob': _dobController.text,
+      'country': _langugae.text,
+      'password':_password.text,
+      'sexualOrientation': _confirmPassword.text,
+    };
+
+    setState(() {
+      isLoading = true;
+    });
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(userData),
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+
+    // Handle the response from the API
+    if (response.statusCode == 201) {
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ChatInit()),
+      );
+      // Registration successful, show a success message or navigate to login screen
+      print("Suceessful");
+    } else {
+      // Registration failed, show an error message or handle the specific error
+      print("Errro");
+    }
+  }
 
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -525,7 +572,10 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Widget customButton(Size size) {
-    return GestureDetector(
+    return ElevatedButton(
+      onPressed: () {
+        registerUser();
+      },
       child: Container(
         height: size.height / 14,
         width: size.width / 1.2,

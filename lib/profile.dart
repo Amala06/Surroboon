@@ -1,16 +1,125 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:suro/appstate.dart';
+import 'package:suro/chatInit.dart';
+import 'package:suro/chathome.dart';
+import 'package:suro/login_screen.dart';
 import 'package:suro/list.dart';
+import 'package:suro/splash.dart';
+import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Profile extends StatelessWidget {
   final String pizzaName;
-  final bool pizzaBest;
-
-  Profile({required this.pizzaName, required this.pizzaBest});
+  final String pizzaBest;
+  final String targetid;
+  final String targetname;
+  final String targetpic;
+  final String age;
+  final String country;
+ final  String weight;
+ final  String height;
+  final String useOfAlchohol;
+ final  String preg;
+  final String anyIll; //more things will be added here
+  final String periodHistory;
+  final String martial;
+  final String city;
+// AppState
+  Profile({required this.pizzaName, required this.pizzaBest,required this.targetid,required this.targetname,required this.targetpic,
+    required this.age,
+    required this.country,
+    required this.weight,
+    required this.height,
+    required this.useOfAlchohol,
+    required this.preg,
+    required this.anyIll,
+    required this.periodHistory,
+    required this.martial,
+    required this.city,
+  });
   List imgs = [""];
 
   @override
   Widget build(BuildContext context) {
+    final isLoggedIn = Provider.of<AppState>(context).isLoggedIn;
+
+
+    // Set the userID in the AppState
+    final appState = Provider.of<AppState>(context, listen: false);
+    appState.targetID = targetid;
+    appState.targetName = targetname;
+
+    appState.targetPic = targetpic;
+
+    print("appState.targetID : " + appState.targetID);
+    print("appState.targetName : " + appState.targetName);
+    print("appState.targetPic : " + appState.targetPic);
+
+void chatlistformation () async {
+        final url =
+            'https://surodishibackend-production.up.railway.app/api/user/chatlist';
+        
+
+        
+        final userData = {
+          '_id':appState.userID,
+          'username': appState.userName,
+          'userpic': appState.userPic,
+          'targetid': appState.targetID,
+          'name': appState.targetName,
+          'pic': appState.targetPic,
+        };
+
+        // setState(() {
+        //   // isLoading = true;
+        // });
+
+        final response = await http.post(
+          Uri.parse(url),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(userData),
+        );
+
+        // setState(() {
+        //   isLoading = false;
+        // });
+
+        // Handle the response from the API
+        if (response.statusCode == 200) {
+          // Registration successful, show a success message or navigate to login screen
+          print("Suceessful chat list");
+        } else {
+          // Registration failed, show an error message or handle the specific error
+          print("Errro in chat list");
+        }
+      
+}
+
+
+    void fun() {
+      final isLoggedIn =
+          Provider.of<AppState>(context, listen: false).isLoggedIn;
+
+      if (isLoggedIn) {
+         chatlistformation();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => ChatInit()),
+          (route) => false,
+        );
+      } else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+          (route) => false,
+        );
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.pink,
       body: SingleChildScrollView(
@@ -53,7 +162,7 @@ class Profile extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 35,
-                        backgroundImage: AssetImage("sp.png"),
+                        backgroundImage: NetworkImage(targetpic),
                       ),
                       SizedBox(height: 15),
                       Text(
@@ -117,7 +226,7 @@ class Profile extends StatelessWidget {
                 topRight: Radius.circular(10),
               ),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -141,7 +250,7 @@ class Profile extends StatelessWidget {
                           size: 10,
                         ),
                         Text(
-                          "Eye color",
+                          "Weight/Height",
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -149,13 +258,13 @@ class Profile extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Hair color",
+                      "Period History",
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Children",
+                      "Martial status",
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -167,21 +276,21 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Green",
+                      weight+'/'+height,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "Black",
+                      periodHistory,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "0",
+                      martial,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -204,19 +313,19 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Eye color",
+                     " Pregnancy Ex.",
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Hair color",
+                      "Any Illness",
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Children",
+                      "Alochol Cons.",
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -228,21 +337,21 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Green",
+                      preg,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "Black",
+                      anyIll,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "0",
+                      useOfAlchohol,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -270,19 +379,19 @@ class Profile extends StatelessWidget {
                     //   size: 10,
                     // ),
                     Text(
-                      "Eye color",
+                      "Nearest city",
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Hair color",
+                      "Born Country",
                       style: TextStyle(
                         color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Children",
+                      " Age",
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -294,21 +403,21 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Green",
+                      city,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "Black",
+                      country,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "0",
+                      age,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -325,10 +434,15 @@ class Profile extends StatelessWidget {
                       color: Colors.purple,
                       size: 40,
                     ),
-                    Icon(
-                      CupertinoIcons.chat_bubble_text_fill,
-                      color: Colors.purple,
-                      size: 40,
+                    ElevatedButton(
+                      onPressed: () {
+                        fun();
+                      },
+                      child: Icon(
+                        CupertinoIcons.chat_bubble_text_fill,
+                        color: Colors.purple,
+                        size: 40,
+                      ),
                     ),
                   ],
                 ),

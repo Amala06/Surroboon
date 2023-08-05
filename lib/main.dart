@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suro/appstate.dart';
 import 'package:suro/chathome.dart';
 import 'package:suro/customUI/loginscreen.dart';
 import 'package:suro/home_carousel.dart';
@@ -10,9 +11,18 @@ import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:suro/splash.dart';
 import 'package:suro/user_identity.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+    runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppState(), // Provide an instance of AppState
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +43,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SafeArea(child: Splash()),
+      // home: const SafeArea(child: ChatHome()),
+      home:  SafeArea(child: Splash()),
     );
   }
 }
@@ -177,6 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // LoginScreen(),
             SizedBox(height: 10),
+          
             Expanded(child: Listsmall()),
 
             // Listsmall()

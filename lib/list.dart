@@ -7,30 +7,40 @@ import 'package:suro/profile.dart';
 class PizzaItem {
   String id;
   String name;
-  int qty;
+  String email;
   String pic;
-  String desc;
-  int reviews;
-  String top;
-  int med;
-  int small;
-  int large;
-  bool veg;
-  bool bestSell;
+  String age;
+  String country;
+  String weight;
+String height;
+String useOfAlchohol;
+String preg;
+String  anyIll; //more things will be added here
+String periodHistory;
+String martial;
+String city;
+
 
   PizzaItem({
     required this.id,
     required this.name,
-    required this.qty,
+    required this.email,
     required this.pic,
-    required this.desc,
-    required this.reviews,
-    required this.top,
-    required this.med,
-    required this.small,
-    required this.large,
-    required this.veg,
-    required this.bestSell,
+    required this.age,
+
+    required this.country,
+    required this.weight,
+    required this.height,
+    required this.useOfAlchohol,
+    required this.preg,
+    required this.anyIll,
+    required this.periodHistory,
+    required this.martial,
+    required this.city,
+
+
+
+    
   });
 }
 
@@ -51,28 +61,46 @@ class _ListsmallState extends State<Listsmall> {
     super.initState();
     fetchDataFromAPI();
   }
+  // {  id: pizzaData['_id'],
+  //           name: pizzaData['name'],
+  //           email: pizzaData['email'],
+  //           pic: pizzaData['pic'],
+  //           age: pizzaData['age'].toString(),            
+  //           country: pizzaData['country'], 
+  //           weight:pizzaData['weight'].toString(),
+  //           height:pizzaData['height'].toString(),
+  //           useOfAlchohol:pizzaData['useOfAlchohol'] ,
+  //           preg:pizzaData['pregnancyExperiance'],
+  //           anyIll:pizzaData['anyIllness'],
+  //           periodHistory:pizzaData['periodsHistory'],
+  //           martial:pizzaData['maritalStatus'],
+  //           city:pizzaData['city'],  }
 
   Future<void> fetchDataFromAPI() async {
-    final response = await http
-        .get(Uri.parse('https://pizzabackend-ax85.onrender.com/api/food/menu'));
+    final response = await http.get(Uri.parse(
+        'https://surodishibackend-production.up.railway.app/api/user/suro/'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
+      // print(data);
       if (data is List) {
         List<PizzaItem> pizzaItems = [];
         for (var pizzaData in data) {
           pizzaItems.add(PizzaItem(
             id: pizzaData['_id'],
             name: pizzaData['name'],
-            qty: pizzaData['qty'],
+            email: pizzaData['email'],
             pic: pizzaData['pic'],
-            desc: pizzaData['desc'],
-            reviews: pizzaData['reviews'],
-            top: pizzaData['top'],
-            med: pizzaData['med'],
-            small: pizzaData['small'],
-            large: pizzaData['large'],
-            veg: pizzaData['veg'],
-            bestSell: pizzaData['bestSell'],
+            age: "20",            
+            country:pizzaData['country'], 
+            weight:"50",
+            height:"5'4",
+            useOfAlchohol:"NO" ,
+            preg:"Yes",
+            anyIll:"NO illness",
+            periodHistory:"Good",
+            martial:"Married",
+            city:pizzaData['city'],          
+
           ));
         }
 
@@ -91,7 +119,7 @@ class _ListsmallState extends State<Listsmall> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
@@ -122,9 +150,15 @@ class _ListsmallState extends State<Listsmall> {
                     children: [
                       Row(
                         children: [
-                          Text(items[index].name),
+                          Text(items[index].email),
                           Spacer(),
-                          Text(items[index].name),
+                          Row(
+                            children: [
+                                                            Text("Age : "),
+
+                              Text(items[index].age),
+                            ],
+                          ),
                         ],
 
                         // Add more widgets to display additional data from the API
@@ -142,7 +176,7 @@ class _ListsmallState extends State<Listsmall> {
                           //   child: Text("Explore.."),
                           // ),
                           // Spacer(),
-                          Text(items[index].name),
+                          Text(items[index].country),
                           Spacer(),
                           GestureDetector(
                             onTap: () {
@@ -152,7 +186,23 @@ class _ListsmallState extends State<Listsmall> {
                                   MaterialPageRoute(
                                       builder: (context) => Profile(
                                             pizzaName: items[index].name,
-                                            pizzaBest: items[index].bestSell,
+                                            pizzaBest: items[index].email,
+                                            targetid: items[index].id,
+                                            targetname: items[index].name,
+                                            targetpic: items[index].pic,
+                                            age: items[index].age,
+                                            country: items[index].country,
+                                            weight: items[index].weight,
+                                            height: items[index].height,
+                                            useOfAlchohol: items[index].useOfAlchohol,
+                                            preg: items[index].preg,
+                                            anyIll: items[index].anyIll,
+                                            periodHistory: items[index].periodHistory,
+                                            martial: items[index].martial,
+                                            city: items[index].city,
+
+
+                                            
                                           )));
                             },
                             child: Text("Explore.."),

@@ -3,11 +3,11 @@ class Chatmodel {
   String icon;
   String time;
   String currentMessage;
-  int id;
+  String id;
 
   Chatmodel(
       {this.name = '',
       this.icon = '',
       this.time = '',
-      this.currentMessage = '',this.id=0});
+      this.currentMessage = '',this.id=''});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:suro/list.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class Search extends StatefulWidget {
   const Search({super.key});
 
@@ -9,6 +10,9 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final _textEditingController=TextEditingController();
+  bool show=false;
+  String text='';
   final List<String> items = [
     'Age',
     'Nationality',
@@ -21,6 +25,22 @@ class _SearchState extends State<Search> {
   ];
 
   int _selectedItemIndex = -1; // Track the index of the selected item
+Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
+    final baseUrl =
+        'https://surodishibackend-production.up.railway.app/api/surrogate/suro/$searchParam';
+    final response = await http.get(Uri.parse(baseUrl));
+     // final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+     
+      return List<Map<String, dynamic>>.from(jsonData);
+      
+    }
+     else {
+      throw Exception('Failed to load search data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +57,11 @@ class _SearchState extends State<Search> {
             ),
             child: Row(
               children: [
-                const Expanded(
+                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(6.0),
                     child: TextField(
-                      // controller: _textEditingController,
+                      controller: _textEditingController,
                       decoration: InputDecoration(
                         hintText: 'Enter your preferred location ',
                         hintStyle: TextStyle(
@@ -53,8 +73,24 @@ class _SearchState extends State<Search> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {
+                  onPressed: () async{
                     // Perform search functionality here
+                        // fetchSearchData(_textEditingController.text);
+          final searchParam = _textEditingController.text;
+          setState(() {
+            text=searchParam;
+          });
+                    if (searchParam.isEmpty) {
+                      // Show an error message or handle the empty search parameter case
+                      print("Error empty");
+                      return ;
+                    }
+
+                    final searchData = await fetchSearchData(text);
+                    setState(() {
+                      show = true;
+                      // Use the fetched data here if needed
+                    });
                   },
                   icon: Icon(Icons.search),
                   color: Colors.pink, // Customize the color of the search icon
@@ -112,6 +148,38 @@ class _SearchState extends State<Search> {
               },
             ),
           ),
+
+          show?
+                          Container(
+                            child: FutureBuilder<List<Map<String, dynamic>>>(
+                                // future: Future.error('some error'),
+
+                                      future: fetchSearchData(text),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState == ConnectionState.waiting) {
+                                          return CircularProgressIndicator();
+                                        } else if (snapshot.hasError) {
+                                          return Text('Error: ${snapshot.error}');
+                                        } else {
+                                          // Render ListTiles based on fetched search data
+                                          return Column(
+                                            children: snapshot.data!
+                                                .map(
+                                                  (item) => ListTile(
+                            title: Text(item['title']),
+                            subtitle: Text(item['subtitle']),
+                            // Customize ListTile based on your API data
+                            // ... (Add more ListTile properties as needed)
+                                                  ),
+                                                )
+                                                .toList(),
+                                          );
+                                        }
+                                      },
+                                    ),
+                          ):Container()
+
+
           // Listsmall()
         ],
       ),

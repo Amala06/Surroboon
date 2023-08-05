@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:suro/chatInit.dart';
+import 'package:suro/chathome.dart';
 import 'package:suro/createAccount.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:suro/appstate.dart';
+import 'dart:convert';
+import 'package:suro/customUI/loginscreen.dart';
+import 'package:suro/profile.dart';
+
+import 'package:suro/splash.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,10 +21,71 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  // late final isLoggedIn;
+
+  void login() async {
+    print(_email.text);
+        print(_password.text);
+
+    final url = 'https://surodishibackend-production.up.railway.app/api/user/login';
+
+      
+        
+     
+      final userData = {
+      'email': _email.text,
+      'password':_password.text,
+    };
+
+
+       final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(userData),
+    );
+    
+
+    // Handle the response from the API
+    if (response.statusCode == 200) {
+      // Login successful, navigate to the home screen or perform any other actions
+      print("Successful");
+      
+      // Parse the response JSON to get the userID
+      final jsonResponse = json.decode(response.body);
+      final userID = jsonResponse['_id'];
+      final userName=jsonResponse['name'];
+      final userPic=jsonResponse['pic'];
+      print(userID);
+
+      // Set the userID in the AppState
+      final appState = Provider.of<AppState>(context, listen: false);
+      appState.userID=userID;
+      appState.userName=userName;
+      appState.userPic = userPic;
+
+      print("appState.UserID : "+appState.userID);
+            print("appState.UserName : " + appState.userName);
+
+      print("appState.UserPic : " + appState.userPic);
+
+       Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ChatInit()),
+          );
+      // isLoggedIn = true;
+      // final appState = Provider.of<AppState>(context, listen: false);
+      appState.isLoggedIn=true;
+    } else {
+      print("Error");
+    }
+  }
+
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    // isLoggedIn = Provider.of<AppState>(context).isLoggedIn;
 
     return Scaffold(
         body: isLoading
@@ -159,20 +230,25 @@ class _LoginScreenState extends State<LoginScreen> {
       //     print("Please enter fields");
       //   }
       //},
-      child: Container(
-        height: size.height / 14,
-        width: size.width / 1.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.blue,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          "Login",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+      child: ElevatedButton(
+        onPressed: () {
+          login();
+        },
+        child: Container(
+          height: size.height / 14,
+          width: size.width / 1.2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: const Color.fromARGB(255, 243, 33, 198),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            "Login",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

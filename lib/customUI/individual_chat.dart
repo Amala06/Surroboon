@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:suro/appstate.dart';
+import 'package:suro/bond.dart';
 import 'package:suro/chatmodel.dart';
 import 'package:suro/customUI/own_message.dart';
 import 'package:suro/customUI/reply_msg.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:suro/model/messagemodel.dart';
+import 'package:suro/splash.dart';
 
 class IndividualChat extends StatefulWidget {
+  
   const IndividualChat({Key? key, this.chatmodel, this.sourcechat})
       : super(key: key);
   final Chatmodel? chatmodel;
   final Chatmodel? sourcechat;
+
+
 
   @override
   State<IndividualChat> createState() => _IndividualChatState();
 }
 
 class _IndividualChatState extends State<IndividualChat> {
+String timee= DateTime.now().toString().substring(10,16)  ;
   late IO.Socket socket;
   bool sendButton = false;
   List<MessageModel> messages = [];
@@ -24,6 +32,8 @@ class _IndividualChatState extends State<IndividualChat> {
   @override
   void initState() {
     super.initState();
+    final appState = Provider.of<AppState>(context, listen: false);
+
     connect();
   }
 
@@ -37,6 +47,7 @@ class _IndividualChatState extends State<IndividualChat> {
       print(data);
       print("Connected to socket server from frontend");
       socket.emit("signin", widget.sourcechat?.id);
+      print( widget.sourcechat);
       socket.on("message", (msg) {
         print(msg);
         setMessage("destination", msg["message"]);
@@ -60,8 +71,11 @@ class _IndividualChatState extends State<IndividualChat> {
     socket.connect();
   }
 
-  void sendMessage(String message, int sourceId, int targetId) {
+  void sendMessage(String message, String sourceId, String targetId) {
     setMessage("source", message);
+    print(targetId);
+    print(sourceId);
+    print(message);
     socket.emit("message",
         {"message": message, "sourceId": sourceId, "targetId": targetId});
   }
@@ -97,20 +111,87 @@ class _IndividualChatState extends State<IndividualChat> {
         ),
         title: Container(
           margin: EdgeInsets.all(5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.chatmodel?.name ?? "Name Not Available",
-                style: TextStyle(
-                    fontSize: 18.5,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              Text("Last seen today at 12:05 ",
-                  style: TextStyle(fontSize: 13, color: Colors.white))
-            ],
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to the other page when the button is clicked.
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      Splash(), // Replace OtherPage with the desired page to navigate to.
+                ),
+              );
+            },
+
+            child: Column(
+          
+              children: [
+                // Text(
+                //   widget.chatmodel?.name ?? "Name Not Available",
+                //   style: TextStyle(
+                //       fontSize: 18.5,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.white),
+                // ),
+      //           Text("Last seen today at $timee",
+      //               style: TextStyle(fontSize: 13, color: Colors.white)),
+      //                ElevatedButton(
+      //   onPressed: () {
+      //     // Add any action you want to perform when the button is clicked.
+      //     Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                   builder: (context) =>
+      //                       Splash(), // Replace OtherPage with the desired page to navigate to.
+      //                 ),
+      //               );
+      //   },
+      //   child: Text("Book Now"),
+      //   style: ElevatedButton.styleFrom(
+      //     backgroundColor: Colors.red, // Change the button color to red.
+      //   ),
+        
+      // ),
+       Row(
+              // mainAxisAlignment: MainAxisAlignment.c,
+              children: [
+                Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     Text(
+                          widget.chatmodel?.name ?? "Name Not Available",
+                          style: TextStyle(
+                              fontSize: 18.5,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                    Text(
+                      'Last seen today at 12:05',
+                      style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 248, 247, 247)),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                Bond(), // Replace OtherPage with the desired page to navigate to.
+                          ),
+                        );
+                    // Add any action you want to perform when the button is clicked.
+                  },
+                  child: Text("Book Now"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 245, 243, 243), // Change the button color to red.
+                  ),
+                ),
+              ],)
+              ],
+            ),
           ),
         ),
       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:suro/main.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key});
+class Bond extends StatefulWidget {
+  const Bond({Key? key});
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<Bond> createState() => _BondState();
 }
 
-class _SplashState extends State<Splash> {
+class _BondState extends State<Bond> {
   @override
   void initState() {
     super.initState();
@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(milliseconds: 5000));
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => MyHomePage(title: 'Surroboon')),
@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              "assets/sp.png",
+              "assets/bd.png",
               fit: BoxFit.cover,
             ),
           ),
