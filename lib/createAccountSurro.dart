@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:suro/constants.dart';
+import 'package:suro/lawsOrders.dart';
 
 class CreateAccountSurro extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
   final TextEditingController _confirmPassword = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool isLoading = false;
+  bool isChecked = false;
 
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -58,6 +60,16 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Signing Up ',
+          style: TextStyle(
+              color: iconcolor, fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        iconTheme: IconThemeData(
+          color: greys,
+        ),
+      ),
       body: isLoading
           ? Center(
               child: Container(
@@ -69,56 +81,6 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
           : SingleChildScrollView(
               child: Column(
               children: [
-                SizedBox(
-                  height: size.height / 20,
-                ),
-                Container(
-                  width: size.width / 1.1,
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_ios_new,
-                          color: iconcolor,
-                          size: 25,
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.all(10)),
-                      Expanded(
-                        child: Text(
-                          "Become a Surrogate: Connect with Loving Parents Through Registration",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            color: iconcolor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-                Row(
-                  // width: size.width / 1.1,
-                  children: [
-                    // Padding(padding: EdgeInsets.all(35)),
-                    //  padding: EdgeInsets.all(16.0),
-                    Text(
-                      "Register here",
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 12,
-                        fontWeight: FontWeight.w100,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: size.height / 20,
-                ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8.0),
                   padding: EdgeInsets.all(16.0),
@@ -150,7 +112,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.all(10)),
+                      // const Padding(padding: EdgeInsets.all(10)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -161,8 +126,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Full Name',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -179,8 +144,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Date of Birth',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -192,7 +157,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -203,8 +168,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Email Address',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -221,8 +186,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Cell Phone',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -234,7 +199,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -245,8 +210,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Marital Status',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -263,8 +228,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Number of children',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -311,7 +276,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.all(10)),
+                      // const Padding(padding: EdgeInsets.all(10)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -322,8 +290,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Height',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -340,8 +308,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Weight',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -353,7 +321,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -364,8 +332,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Pregnancy Complications(if any)',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -416,7 +384,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.all(10)),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      // const Padding(padding: EdgeInsets.all(10)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -427,8 +398,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Menstrual History and Regularity',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -440,7 +411,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
-                      // SizedBox(height: 10),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -451,8 +422,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Fertility Evalution',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -464,6 +435,9 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -474,8 +448,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'History of any fertility treatments or IVF cycles(if any)',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -491,7 +465,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -524,7 +498,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.all(10)),
+                      // const Padding(padding: EdgeInsets.all(10)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -535,8 +512,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Diet and Excersice Habit',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -548,7 +525,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
-                      // SizedBox(height: 10),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -559,8 +536,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'Use of alcohol, tobacco, or recreational drug',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -575,6 +552,7 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -585,8 +563,8 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 'History of any mental health issues',
                                 style: TextStyle(
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w200,
-                                  color: iconcolor,
+                                  fontWeight: FontWeight.bold,
+                                  color: greys,
                                 ),
                               ),
                               SizedBox(
@@ -635,7 +613,10 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                           )
                         ],
                       ),
-                      const Padding(padding: EdgeInsets.all(10)),
+                      // const Padding(padding: EdgeInsets.all(10)),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Wrap(
                         children: [
                           Row(
@@ -645,11 +626,11 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Expectation for surrogacy process and relationship with the intended parents',
+                                    'Expectation with the intended parents',
                                     style: TextStyle(
                                       fontSize: 18.0,
-                                      fontWeight: FontWeight.w200,
-                                      color: iconcolor,
+                                      fontWeight: FontWeight.bold,
+                                      color: greys,
                                     ),
                                   ),
                                   SizedBox(
@@ -668,7 +649,51 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height / 20,
+                  height: 20,
+                ),
+                Center(
+                  child: Row(
+                    children: [
+                      Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                            isChecked = newValue ?? false;
+                          });
+                        },
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "By siging up you accept the ",
+                            style: TextStyle(
+                              color: greys,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              // Navigate to the next page when the link is tapped.
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TermsConditionsPage()));
+                            },
+                            child: Text(
+                              "Laws and Orders ",
+                              style: TextStyle(
+                                color: iconcolor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 customButton(size),
                 Padding(
@@ -676,12 +701,12 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Text(
-                      "Sign In",
+                      "Already have an account? Sign In",
                       style: TextStyle(
-                        color: heading,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          color: greys,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline),
                     ),
                   ),
                 )
@@ -697,13 +722,13 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: backgroundC,
+          color: iconcolor,
         ),
         alignment: Alignment.center,
         child: Text(
           "Create Account",
           style: TextStyle(
-            color: iconcolor,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -721,10 +746,13 @@ class _CreateAccountSurroState extends State<CreateAccountSurro> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon,color: iconcolor,),
+          prefixIcon: Icon(
+            icon,
+            color: greys,
+          ),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: backgroundC,
+            color: greys,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

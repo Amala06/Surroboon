@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suro/HomeM.dart';
 import 'package:suro/chathome.dart';
 import 'package:suro/customUI/loginscreen.dart';
 import 'package:suro/home_carousel.dart';
@@ -25,11 +26,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: backgroundC),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
-            color: iconcolor, // Change the color of the drawer icon here
+            color: greys, // Change the color of the drawer icon here
           ),
         ),
       ),
@@ -72,10 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   widget.title,
                   style: TextStyle(
-                    color: heading,
-                    fontWeight: FontWeight
-                        .bold, // Change the color of the app bar title here
-                  ),
+                      color: iconcolor,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing:
+                          1.1 // Change the color of the app bar title here
+                      ),
                 ),
               ),
             ),
@@ -101,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: heading, // Change the color of the drawer here
               ),
               child: Text(
-                'Drawer Header',
+                'header',
                 style: TextStyle(
                   color: Colors.white, // Change the color of the text here
                   fontSize: 24,
@@ -119,10 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Drawer Item 2'),
+              title: Text('Dialog Flow'),
               onTap: () {
                 _onDrawerItemClicked();
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
               },
             ),
             // Add more ListTile widgets for additional drawer items

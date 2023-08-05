@@ -13,11 +13,26 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool isLoading = false;
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Hello, Parent!',
+            style: TextStyle(
+                color: iconcolor,
+                fontSize: 25,
+                fontWeight: FontWeight.bold // Set text color to white
+                ),
+          ),
+          // backgroundColor: iconcolor,
+          iconTheme: IconThemeData(
+            color: greys, // Set the back button color to grey
+          ),
+        ),
         body: isLoading
             ? Center(
                 child: Container(
@@ -29,101 +44,76 @@ class _LoginScreenState extends State<LoginScreen> {
             : SingleChildScrollView(
                 child: Column(
                 children: [
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios_new,
-                            color: iconcolor,
-                            size: 25,
-                          ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage('assets/images/user.jpeg'),
+                          fit: BoxFit.cover,
                         ),
-                        Padding(padding: EdgeInsets.all(10)),
-                        Text(
-                          "Welcome",
-                          style: TextStyle(
-                              fontSize: 34,
-                              fontWeight: FontWeight.bold,
-                              color: heading),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: size.height / 20,
-                  // ),
-                  // Container(
-                  //   alignment: Alignment.centerLeft,
-                  //   width: size.width / 1.2,
-                  //     child: IconButton(onPressed: (){},
-                  //         icon: Icon(Icons.arrow_back_ios))
-                  //         ),
-                  //         SizedBox(
-                  //           height: size.height / 50,
-                  //         ),
-                  // Container(
-                  //   width: size.width / 1.3,
-
-                  //   child: Text(
-                  //     "Welcome",
-                  //     style: TextStyle(
-                  //       fontSize: 34,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: size.width / 1.3,
-                  //   child: Text(
-                  //     "Sign In to Continue!",
-                  //     style: TextStyle(
-                  //       color: Colors.grey[700],
-                  //       fontSize: 25,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-
                   SizedBox(
-                    height: size.height / 10,
+                    height: 20,
                   ),
                   Container(
-                    width: size.width,
+                    width: size.width / 1.2,
                     alignment: Alignment.center,
                     child: field(size, "email", Icons.account_box, _email),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 18.0),
                     child: Container(
-                      width: size.width,
+                      width: size.width / 1.2,
                       alignment: Alignment.center,
                       child: field(size, "password", Icons.lock, _password),
                     ),
                   ),
                   SizedBox(
-                    height: size.height / 10,
+                    height: 5,
+                  ),
+                  Center(
+                    child: Row(
+                      children: [
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked = newValue ?? false;
+                            });
+                          },
+                        ),
+                        Text(
+                          "Remeber me.",
+                          style: TextStyle(color: greys),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   customButton(size),
-
                   SizedBox(
-                    height: size.height / 40,
+                    height: 15,
                   ),
-
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => CreateAccount())),
                     child: Text(
-                      "Sign Up",
+                      "Don't have any account? Sign Up",
                       style: TextStyle(
-                        color: iconcolor,
+                        color: greys,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   )
@@ -164,14 +154,14 @@ class _LoginScreenState extends State<LoginScreen> {
         height: size.height / 14,
         width: size.width / 1.2,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: backgroundC,
+          borderRadius: BorderRadius.circular(27),
+          color: iconcolor,
         ),
         alignment: Alignment.center,
         child: Text(
           "Sign In",
           style: TextStyle(
-            color: heading,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -188,11 +178,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon,color: iconcolor,),
+          prefixIcon: Icon(
+            icon,
+            color: greys,
+          ),
           hintText: hintText,
-          hintStyle: TextStyle(color: backgroundC),
+          hintStyle: TextStyle(color: greys),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(27),
           ),
         ),
       ),

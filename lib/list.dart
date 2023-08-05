@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:suro/constants.dart';
 import 'dart:convert';
 
 import 'package:suro/profile.dart';
@@ -99,14 +100,17 @@ class _ListsmallState extends State<Listsmall> {
               color: Color.fromARGB(255, 250, 247, 248),
               child: ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(items[index].pic),
-                    radius: 35,
+                    backgroundImage: AssetImage("assets/images/c1.jpg"),
+                    radius: 40,
                   ),
                   // img:Image.network(items[index].pic),
                   title: Text(
                     items[index].name,
                     style: const TextStyle(
-                        color: Colors.pink, fontWeight: FontWeight.bold),
+                        color: iconcolor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                        letterSpacing: 1.1),
                   ),
                   // title: InkWell(
                   //   onTap: () {
@@ -122,9 +126,14 @@ class _ListsmallState extends State<Listsmall> {
                     children: [
                       Row(
                         children: [
-                          Text(items[index].name),
+                          Text(
+                            items[index].name,
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 70, 70, 70),
+                            ),
+                          ),
                           Spacer(),
-                          Text(items[index].name),
+                          // Text(items[index].name),
                         ],
 
                         // Add more widgets to display additional data from the API
@@ -142,7 +151,7 @@ class _ListsmallState extends State<Listsmall> {
                           //   child: Text("Explore.."),
                           // ),
                           // Spacer(),
-                          Text(items[index].name),
+                          Text("26 Yrs"),
                           Spacer(),
                           GestureDetector(
                             onTap: () {
@@ -156,7 +165,14 @@ class _ListsmallState extends State<Listsmall> {
                                             pizzapic: items[index].pic,
                                           )));
                             },
-                            child: Text("Explore.."),
+                            child: Text(
+                              "Explore",
+                              style: TextStyle(
+                                color: greys,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
                           ),
                         ],
 

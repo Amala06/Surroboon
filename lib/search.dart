@@ -13,17 +13,14 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   final List<String> items = [
     'Age',
+
     'Price',
     'Locality',
+    // 'Food Preference',
     'Ethencity',
-
-    // Add more items as needed
-  ];
-
-  final List<String> items1 = [
     'Past Record',
     'Nationality',
-    'Food Preference',
+
     // Add more items as needed
   ];
 
@@ -52,7 +49,7 @@ class _SearchState extends State<Search> {
                       decoration: InputDecoration(
                         hintText: 'Enter your preferred location ',
                         hintStyle: TextStyle(
-                            color: heading), // Change hint text color to pink
+                            color: iconcolor), // Change hint text color to pink
                         border: InputBorder.none, // Remove the default border
                       ),
                     ),
@@ -63,57 +60,10 @@ class _SearchState extends State<Search> {
                     // Perform search functionality here
                   },
                   icon: Icon(Icons.search),
-                  color: iconcolor, // Customize the color of the search icon
+                  color: Color.fromARGB(255, 70, 70,
+                      70), // Customize the color of the search icon
                 ),
               ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            color: Colors
-                .white, // Set the background color of the GridView.builder to white
-            child: GridView.builder(
-              // Use GridView.builder
-              shrinkWrap:
-                  true, // This is important to allow the GridView to work inside a Column
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, // Number of columns in the grid
-                crossAxisSpacing: 8.0, // Spacing between columns
-                mainAxisSpacing: 8.0, // Spacing between rows
-                mainAxisExtent: 38,
-              ),
-              itemCount: items.length, // Total number of items in the grid
-              itemBuilder: (context, index) {
-                // Build each grid item
-                final isSelected = index == _selectedItemIndex;
-                final color = isSelected ? heading : backgroundC;
-
-                final textcolor = isSelected ? backgroundC : heading;
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      _selectedItemIndex = index;
-                    });
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      color: color, // Background color of each grid item
-                      child: Center(
-                        child: Text(
-                          items[index],
-                          style: TextStyle(
-                              color: textcolor,
-                              fontWeight:
-                                  FontWeight.bold), // Customize the text color
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
             ),
           ),
           SizedBox(
@@ -132,13 +82,13 @@ class _SearchState extends State<Search> {
                 mainAxisSpacing: 8.0, // Spacing between rows
                 mainAxisExtent: 38,
               ),
-              itemCount: items1.length, // Total number of items in the grid
+              itemCount: items.length, // Total number of items in the grid
               itemBuilder: (context, index) {
                 // Build each grid item
                 final isSelected = index == _selectedItemIndex;
-                final color = isSelected ? heading : backgroundC;
-
-                final textcolor = isSelected ? backgroundC : heading;
+                final color = isSelected ? Colors.transparent : iconcolor;
+                final border = isSelected ? iconcolor : Colors.transparent;
+                final textcolor = isSelected ? iconcolor : Colors.white;
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -146,12 +96,20 @@ class _SearchState extends State<Search> {
                     });
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(27),
                     child: Container(
-                      color: color, // Background color of each grid item
+                      decoration: BoxDecoration(
+                        color: color,
+                        border: Border.all(
+                          color:
+                              border, // Set the border color to purple when selected
+                          width: 2.0, // Set the border width as desired
+                        ),
+                      ),
+                      // color: color, // Background color of each grid item
                       child: Center(
                         child: Text(
-                          items1[index],
+                          items[index],
                           style: TextStyle(
                               color: textcolor,
                               fontWeight:
@@ -164,6 +122,7 @@ class _SearchState extends State<Search> {
               },
             ),
           ),
+
           // Listsmall()
         ],
       ),
