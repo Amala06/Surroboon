@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:suro/constants.dart';
 
 class TermsConditionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Surroboon'),
-        // backgroundColor: Colors.pink,
+        title: Text(
+          'Laws and Orders',
+          style: TextStyle(color: iconcolor, fontWeight: FontWeight.bold),
+        ),
+        // backgroundColor: iconcolor,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -17,9 +21,9 @@ class TermsConditionsPage extends StatelessWidget {
               Text(
                 'Surrogate Rights',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.pink,
+                  color: iconcolor,
                 ),
               ),
               SizedBox(height: 20.0),
@@ -85,9 +89,9 @@ class TermsConditionsPage extends StatelessWidget {
               Text(
                 'Intended Parents Rights',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.pink,
+                  color: iconcolor,
                 ),
               ),
               SizedBox(height: 20.0),
@@ -221,7 +225,7 @@ class Section extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
-              color: Colors.pink,
+              color: iconcolor,
             ),
           ),
           SizedBox(height: 10.0),

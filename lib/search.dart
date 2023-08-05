@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/list.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,12 +17,14 @@ class _SearchState extends State<Search> {
   String text='';
   final List<String> items = [
     'Age',
-    'Nationality',
-    'Food Preference',
+
     'Price',
     'Locality',
+    // 'Food Preference',
     'Ethencity',
     'Past Record',
+    'Nationality',
+
     // Add more items as needed
   ];
 
@@ -65,8 +69,7 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
                       decoration: InputDecoration(
                         hintText: 'Enter your preferred location ',
                         hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 250, 97,
-                                148)), // Change hint text color to pink
+                            color: iconcolor), // Change hint text color to pink
                         border: InputBorder.none, // Remove the default border
                       ),
                     ),
@@ -93,7 +96,8 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
                     });
                   },
                   icon: Icon(Icons.search),
-                  color: Colors.pink, // Customize the color of the search icon
+                  color: Color.fromARGB(255, 70, 70,
+                      70), // Customize the color of the search icon
                 ),
               ],
             ),
@@ -108,7 +112,7 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
               // Use GridView.builder
               shrinkWrap:
                   true, // This is important to allow the GridView to work inside a Column
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, // Number of columns in the grid
                 crossAxisSpacing: 8.0, // Spacing between columns
                 mainAxisSpacing: 8.0, // Spacing between rows
@@ -118,13 +122,9 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
               itemBuilder: (context, index) {
                 // Build each grid item
                 final isSelected = index == _selectedItemIndex;
-                final color = isSelected
-                    ? Colors.pink
-                    : Color.fromARGB(255, 249, 208, 225);
-
-                final textcolor= isSelected
-                    ? Colors.white
-                    : Color.fromARGB(255, 6, 1, 3);
+                final color = isSelected ? Colors.transparent : iconcolor;
+                final border = isSelected ? iconcolor : Colors.transparent;
+                final textcolor = isSelected ? iconcolor : Colors.white;
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -132,14 +132,24 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
                     });
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(27),
                     child: Container(
-                      color: color, // Background color of each grid item
+                      decoration: BoxDecoration(
+                        color: color,
+                        border: Border.all(
+                          color:
+                              border, // Set the border color to purple when selected
+                          width: 2.0, // Set the border width as desired
+                        ),
+                      ),
+                      // color: color, // Background color of each grid item
                       child: Center(
                         child: Text(
                           items[index],
                           style: TextStyle(
-                              color: textcolor), // Customize the text color
+                              color: textcolor,
+                              fontWeight:
+                                  FontWeight.bold), // Customize the text color
                         ),
                       ),
                     ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:suro/HomeM.dart';
 import 'package:suro/appstate.dart';
 import 'package:suro/chathome.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/customUI/loginscreen.dart';
 import 'package:suro/home_carousel.dart';
 import 'package:suro/lawsOrders.dart';
@@ -11,9 +14,7 @@ import 'package:suro/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:suro/splash.dart';
 import 'package:suro/user_identity.dart';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
 void main() {
   // runApp(const MyApp());
@@ -34,12 +35,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: backgroundC),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
-            color: const Color.fromARGB(
-                255, 213, 114, 147), // Change the color of the drawer icon here
+            color: greys, // Change the color of the drawer icon here
           ),
         ),
       ),
@@ -83,9 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   widget.title,
                   style: TextStyle(
-                    color: Colors
-                        .pink, // Change the color of the app bar title here
-                  ),
+                      color: iconcolor,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing:
+                          1.1 // Change the color of the app bar title here
+                      ),
                 ),
               ),
             ),
@@ -108,10 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.pink, // Change the color of the drawer here
+                color: heading, // Change the color of the drawer here
               ),
               child: Text(
-                'Drawer Header',
+                'header',
                 style: TextStyle(
                   color: Colors.white, // Change the color of the text here
                   fontSize: 24,
@@ -129,10 +131,11 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: Text('Drawer Item 2'),
+              title: Text('Dialog Flow'),
               onTap: () {
                 _onDrawerItemClicked();
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
               },
             ),
             // Add more ListTile widgets for additional drawer items
@@ -150,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Icon(Icons.call_split, size: 30),
           Icon(Icons.perm_identity, size: 30),
         ],
-        color: const Color.fromARGB(255, 240, 79, 133),
+        color: iconcolor,
         buttonBackgroundColor: Color.fromARGB(255, 255, 255, 255),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         animationCurve: Curves.easeInOut,

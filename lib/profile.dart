@@ -5,6 +5,7 @@ import 'package:suro/appstate.dart';
 import 'package:suro/chatInit.dart';
 import 'package:suro/chathome.dart';
 import 'package:suro/login_screen.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/list.dart';
 import 'package:suro/splash.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,10 @@ class Profile extends StatelessWidget {
     required this.martial,
     required this.city,
   });
+
+  // final String pizzapic;
+
+
   List imgs = [""];
 
   @override
@@ -121,8 +126,27 @@ void chatlistformation () async {
     }
 
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: backgroundC,
       body: SingleChildScrollView(
+          // child: Stack(
+          //   alignment: Alignment.center,
+          //   children: [
+          //     Container(
+          //       width: double.infinity,
+          //       height: 150,
+          //       color: Colors.grey,
+          //       child: Center(
+          //         child: CircleAvatar(
+          //           radius: 60,
+          //           backgroundImage: AssetImage("assets/images/c1.jpg"),
+          //         ),
+          //       ),
+          //     ),
+
+          //     // Rest of your profile information widgets...
+          //   ],
+          // ),
+
           child: Column(
         children: [
           SizedBox(height: 50),
@@ -139,7 +163,7 @@ void chatlistformation () async {
                       },
                       child: const Icon(
                         Icons.arrow_back_ios_new,
-                        color: Colors.black,
+                        color: iconcolor,
                         size: 25,
                       ),
                     ),
@@ -149,7 +173,7 @@ void chatlistformation () async {
                       },
                       child: const Icon(
                         Icons.more_vert,
-                        color: Colors.black,
+                        color: iconcolor,
                         size: 25,
                       ),
                     ),
@@ -161,7 +185,7 @@ void chatlistformation () async {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CircleAvatar(
-                        radius: 35,
+                        radius: 60,
                         backgroundImage: NetworkImage(targetpic),
                       ),
                       SizedBox(height: 15),
@@ -170,7 +194,7 @@ void chatlistformation () async {
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: heading,
                         ),
                       ),
                       SizedBox(
@@ -179,7 +203,7 @@ void chatlistformation () async {
                       Text(
                         '$pizzaBest',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: heading,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -213,10 +237,10 @@ void chatlistformation () async {
           ),
           SizedBox(height: 25),
           Container(
-            height: MediaQuery.of(context).size.height / 1.5,
+            height: MediaQuery.of(context).size.height / 1,
             width: double.infinity,
             padding: const EdgeInsets.only(
-              top: 20,
+              top: 10,
               left: 15,
             ),
             decoration: const BoxDecoration(

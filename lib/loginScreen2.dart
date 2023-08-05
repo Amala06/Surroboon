@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:suro/chatInit.dart';
-import 'package:suro/chathome.dart';
-import 'package:suro/createAccount.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:suro/appstate.dart';
+import 'package:suro/constants.dart';
+import 'package:suro/createAccount.dart';
+import 'package:http/http.dart' as http;
+import 'package:suro/createAccountSurro.dart';
 import 'dart:convert';
-// import 'package:suro/customUI/loginscreen.dart';
-import 'package:suro/profile.dart';
 
-import 'package:suro/splash.dart';
 import 'package:suro/customUI/yo.dart';
-
+import 'package:suro/welcomesurro.dart';
 class LoginScreen2 extends StatefulWidget {
   const LoginScreen2({super.key});
 
@@ -78,13 +75,27 @@ class _LoginScreen2State extends State<LoginScreen2> {
   }
 
   bool isLoading = false;
-
+  bool isChecked=false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     // isLoggedIn = Provider.of<AppState>(context).isLoggedIn;
 
     return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Hello, Surrogate!',
+            style: TextStyle(
+                color: iconcolor,
+                fontSize: 25,
+                fontWeight: FontWeight.bold // Set text color to white
+                ),
+          ),
+          // backgroundColor: iconcolor,
+          iconTheme: IconThemeData(
+            color: greys, // Set the back button color to grey
+          ),
+        ),
         body: isLoading
             ? Center(
                 child: Container(
@@ -96,101 +107,74 @@ class _LoginScreen2State extends State<LoginScreen2> {
             : SingleChildScrollView(
                 child: Column(
                 children: [
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Colors.black,
-                            size: 25,
-                          ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage('assets/images/user.jpeg'),
+                          fit: BoxFit.cover,
                         ),
-                        Padding(padding: EdgeInsets.all(10)),
-                        Text(
-                          "Welcome",
-                          style: TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: size.height / 20,
-                  // ),
-                  // Container(
-                  //   alignment: Alignment.centerLeft,
-                  //   width: size.width / 1.2,
-                  //     child: IconButton(onPressed: (){},
-                  //         icon: Icon(Icons.arrow_back_ios))
-                  //         ),
-                  //         SizedBox(
-                  //           height: size.height / 50,
-                  //         ),
-                  // Container(
-                  //   width: size.width / 1.3,
-
-                  //   child: Text(
-                  //     "Welcome",
-                  //     style: TextStyle(
-                  //       fontSize: 34,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: size.width / 1.3,
-                  //   child: Text(
-                  //     "Sign In to Continue!",
-                  //     style: TextStyle(
-                  //       color: Colors.grey[700],
-                  //       fontSize: 25,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-
+                
                   SizedBox(
-                    height: size.height / 10,
+                    height: 20,
                   ),
                   Container(
-                    width: size.width,
+                    width: size.width / 1.2,
                     alignment: Alignment.center,
                     child: field(size, "email", Icons.account_box, _email),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 18.0),
                     child: Container(
-                      width: size.width,
+                      width: size.width / 1.2,
                       alignment: Alignment.center,
                       child: field(size, "password", Icons.lock, _password),
                     ),
                   ),
                   SizedBox(
-                    height: size.height / 10,
+                    height: 5,
+                  ),
+                  Center(
+                    child: Row(
+                      children: [
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 15)),
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked = newValue ?? false;
+                            });
+                          },
+                        ),
+                        Text(
+                          "Remeber me.",
+                          style: TextStyle(color: greys),
+                        ),
+                      ],
+                    ),
                   ),
                   customButton(size),
-
                   SizedBox(
-                    height: size.height / 40,
+                    height: 15,
                   ),
-
                   GestureDetector(
-                    onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => CreateAccount())),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => CreateAccountSurro())),
                     child: Text(
-                      "Create Account",
+                      "Don't have any account? Sign Up",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: greys,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   )
@@ -199,7 +183,10 @@ class _LoginScreen2State extends State<LoginScreen2> {
   }
 
   Widget customButton(Size size) {
-    return GestureDetector(
+    return ElevatedButton(
+      onPressed: (){
+        login();
+      },
       // onTap: () {
       //   if(_email.text.isNotEmpty && _password.text.isNotEmpty)
       //   {
@@ -227,20 +214,22 @@ class _LoginScreen2State extends State<LoginScreen2> {
       //     print("Please enter fields");
       //   }
       //},
-      child: ElevatedButton(
-        onPressed: () {
-          login();
-        },
-        child: Container(
-          height: size.height / 14,
-          width: size.width / 1.2,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: const Color.fromARGB(255, 243, 33, 198),
-          ),
-          alignment: Alignment.center,
+      child: Container(
+        height: size.height / 14,
+        width: size.width / 1.2,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(27),
+          color: iconcolor,
+        ),
+        alignment: Alignment.center,
+        child: GestureDetector(
+          onTap: () {
+            // Navigate to the next page when the link is tapped.
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => WelcomePage()));
+          },
           child: Text(
-            "Login",
+            "Sign In",
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -260,11 +249,14 @@ class _LoginScreen2State extends State<LoginScreen2> {
       child: TextField(
         controller: cont,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(
+            icon,
+            color: greys,
+          ),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: greys),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(27),
           ),
         ),
       ),
