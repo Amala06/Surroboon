@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 200,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage('assets/images/user.jpeg'),
+                          image: AssetImage('assets/images/user.jpeg'),
                           fit: BoxFit.cover,
                         ),
                       ),

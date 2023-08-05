@@ -63,17 +63,22 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
               children: [
                  Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(6.0),
-                    child: TextField(
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your preferred location ',
-                        hintStyle: TextStyle(
-                            color: iconcolor), // Change hint text color to pink
-                        border: InputBorder.none, // Remove the default border
-                      ),
+                  padding: EdgeInsets.all(6.0),
+                  child: TextField(
+                    controller: _textEditingController,
+                    textAlign: TextAlign.center, // Center the entered text
+                    decoration: InputDecoration(
+                      hintText: 'Enter your preferred location',
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: iconcolor,
+                      ), // Change hint text color to pink
+                      border: InputBorder.none, // Remove the default border
+                      alignLabelWithHint: true, // Center the hint text
                     ),
                   ),
+                )
+
                 ),
                 IconButton(
                   onPressed: () async{
@@ -122,9 +127,9 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
               itemBuilder: (context, index) {
                 // Build each grid item
                 final isSelected = index == _selectedItemIndex;
-                final color = isSelected ? Colors.transparent : iconcolor;
+                final color = isSelected ? iconcolor : iconcolor2;
                 final border = isSelected ? iconcolor : Colors.transparent;
-                final textcolor = isSelected ? iconcolor : Colors.white;
+                final textcolor = isSelected ? Colors.white : Colors.white;
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -149,7 +154,7 @@ Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
                           style: TextStyle(
                               color: textcolor,
                               fontWeight:
-                                  FontWeight.bold), // Customize the text color
+                                  FontWeight.w300), // Customize the text color
                         ),
                       ),
                     ),

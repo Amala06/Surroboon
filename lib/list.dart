@@ -13,14 +13,13 @@ class PizzaItem {
   String age;
   String country;
   String weight;
-String height;
-String useOfAlchohol;
-String preg;
-String  anyIll; //more things will be added here
-String periodHistory;
-String martial;
-String city;
-
+  String height;
+  String useOfAlchohol;
+  String preg;
+  String anyIll; //more things will be added here
+  String periodHistory;
+  String martial;
+  String city;
 
   PizzaItem({
     required this.id,
@@ -28,7 +27,6 @@ String city;
     required this.email,
     required this.pic,
     required this.age,
-
     required this.country,
     required this.weight,
     required this.height,
@@ -38,10 +36,6 @@ String city;
     required this.periodHistory,
     required this.martial,
     required this.city,
-
-
-
-    
   });
 }
 
@@ -66,8 +60,8 @@ class _ListsmallState extends State<Listsmall> {
   //           name: pizzaData['name'],
   //           email: pizzaData['email'],
   //           pic: pizzaData['pic'],
-  //           age: pizzaData['age'].toString(),            
-  //           country: pizzaData['country'], 
+  //           age: pizzaData['age'].toString(),
+  //           country: pizzaData['country'],
   //           weight:pizzaData['weight'].toString(),
   //           height:pizzaData['height'].toString(),
   //           useOfAlchohol:pizzaData['useOfAlchohol'] ,
@@ -91,17 +85,16 @@ class _ListsmallState extends State<Listsmall> {
             name: pizzaData['name'],
             email: pizzaData['email'],
             pic: pizzaData['pic'],
-            age: "20",            
-            country:pizzaData['country'], 
-            weight:"50",
-            height:"5'4",
-            useOfAlchohol:"NO" ,
-            preg:"Yes",
-            anyIll:"NO illness",
-            periodHistory:"Good",
-            martial:"Married",
-            city:pizzaData['city'],          
-
+            age: "20",
+            country: pizzaData['country'],
+            weight: "50",
+            height: "5'4",
+            useOfAlchohol: "NO",
+            preg: "Yes",
+            anyIll: "NO illness",
+            periodHistory: "Good",
+            martial: "Married",
+            city: pizzaData['city'],
           ));
         }
 
@@ -156,10 +149,16 @@ class _ListsmallState extends State<Listsmall> {
                         children: [
                           Text(items[index].email),
                           Spacer(),
+                            Spacer(),
+                              Spacer(),
+                                Spacer(),
+
+                                  Spacer(), Spacer(), Spacer(), Spacer(), Spacer(),  Spacer(),  Spacer(),  Spacer(),  Spacer(), Spacer(),
+                          
+
                           Row(
                             children: [
-                                                            Text("Age : "),
-
+                              Text("Age : "),
                               Text(items[index].age),
                             ],
                           ),
@@ -206,22 +205,20 @@ class _ListsmallState extends State<Listsmall> {
                                             country: items[index].country,
                                             weight: items[index].weight,
                                             height: items[index].height,
-                                            useOfAlchohol: items[index].useOfAlchohol,
+                                            useOfAlchohol:
+                                                items[index].useOfAlchohol,
                                             preg: items[index].preg,
                                             anyIll: items[index].anyIll,
-                                            periodHistory: items[index].periodHistory,
+                                            periodHistory:
+                                                items[index].periodHistory,
                                             martial: items[index].martial,
                                             city: items[index].city,
-
-
-                                            
-                                           
                                           )));
                             },
                             child: Text(
                               "Explore",
                               style: TextStyle(
-                                color: greys,
+                                color: iconcolor,
                                 fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline,
                               ),

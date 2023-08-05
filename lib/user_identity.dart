@@ -14,7 +14,7 @@ class user_identity extends StatelessWidget {
           style: TextStyle(
             color: iconcolor,
             // fontSize: 25,
-            // fontWeight: FontWeight.bold // Set text color to white
+            fontWeight: FontWeight.w300 // Set text color to white
           ),
         ),
         // backgroundColor: iconcolor,
@@ -89,7 +89,7 @@ class user_identity extends StatelessWidget {
               height: 600,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('assets/images/ps5.jpg'),
+                  image: AssetImage('assets/images/ps5.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),

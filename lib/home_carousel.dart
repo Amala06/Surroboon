@@ -3,13 +3,13 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-const c1 = "assets/images/c1.jpg";
+const c1 = "assets/images/c1.png";
 const c2 = "assets/images/c2.webp";
 const c3 = "assets/images/c3.webp";
 const c4 = "assets/images/c4.webp";
 const c5 = "assets/images/c5.jpeg";
 
-final List<String> imgList = [c1, c2, c3, c4, c5];
+final List<String> imgList = [ c1,c2,c3,c4,c5];
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
@@ -21,8 +21,11 @@ final List<Widget> imageSliders = imgList
                 children: <Widget>[
                   // Image.asset(item, fit: BoxFit.cover, width: 1000.0),
 
-                  Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                  Positioned(
+Image(
+  image: AssetImage(item),
+  fit: BoxFit.cover,
+  width: 1000.0,
+),                  Positioned(
                     bottom: 0.0,
                     left: 0.0,
                     right: 0.0,

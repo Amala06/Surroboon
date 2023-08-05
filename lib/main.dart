@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   widget.title,
                   style: TextStyle(
                       color: iconcolor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w300,
                       letterSpacing:
                           1.1 // Change the color of the app bar title here
                       ),
@@ -110,13 +110,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: heading, // Change the color of the drawer here
+                color: iconcolor, // Change the color of the drawer here
               ),
               child: Text(
-                'header',
+                'Dashboard',
                 style: TextStyle(
                   color: Colors.white, // Change the color of the text here
-                  fontSize: 24,
+                  fontSize: 19,
+                  fontWeight:FontWeight.w300 
                 ),
               ),
             ),
@@ -130,8 +131,21 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => TermsConditionsPage()));
               },
             ),
+            Divider(thickness: 1,),
             ListTile(
               title: Text('Dialog Flow'),
+              onTap: () {
+                _onDrawerItemClicked();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              },
+            ),
+                        Divider(
+              thickness: 1,
+            ),
+
+                ListTile(
+              title: Text('Version : 1.0.0'),
               onTap: () {
                 _onDrawerItemClicked();
                 Navigator.push(
