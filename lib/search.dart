@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/list.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class Search extends StatefulWidget {
   const Search({super.key});
 
@@ -9,18 +12,39 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final _textEditingController=TextEditingController();
+  bool show=false;
+  String text='';
   final List<String> items = [
     'Age',
-    'Nationality',
-    'Food Preference',
+
     'Price',
     'Locality',
+    // 'Food Preference',
     'Ethencity',
     'Past Record',
+    'Nationality',
+
     // Add more items as needed
   ];
 
   int _selectedItemIndex = -1; // Track the index of the selected item
+Future<List<Map<String, dynamic>>> fetchSearchData(String searchParam) async {
+    final baseUrl =
+        'https://surodishibackend-production.up.railway.app/api/surrogate/suro/$searchParam';
+    final response = await http.get(Uri.parse(baseUrl));
+     // final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+     
+      return List<Map<String, dynamic>>.from(jsonData);
+      
+    }
+     else {
+      throw Exception('Failed to load search data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,27 +61,48 @@ class _SearchState extends State<Search> {
             ),
             child: Row(
               children: [
-                const Expanded(
+                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(6.0),
-                    child: TextField(
-                      // controller: _textEditingController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your preferred location ',
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 250, 97,
-                                148)), // Change hint text color to pink
-                        border: InputBorder.none, // Remove the default border
-                      ),
+                  padding: EdgeInsets.all(6.0),
+                  child: TextField(
+                    controller: _textEditingController,
+                    textAlign: TextAlign.center, // Center the entered text
+                    decoration: InputDecoration(
+                      hintText: 'Enter your preferred location',
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: iconcolor,
+                      ), // Change hint text color to pink
+                      border: InputBorder.none, // Remove the default border
+                      alignLabelWithHint: true, // Center the hint text
                     ),
                   ),
+                )
+
                 ),
                 IconButton(
-                  onPressed: () {
+                  onPressed: () async{
                     // Perform search functionality here
+                        // fetchSearchData(_textEditingController.text);
+          final searchParam = _textEditingController.text;
+          setState(() {
+            text=searchParam;
+          });
+                    if (searchParam.isEmpty) {
+                      // Show an error message or handle the empty search parameter case
+                      print("Error empty");
+                      return ;
+                    }
+
+                    final searchData = await fetchSearchData(text);
+                    setState(() {
+                      show = true;
+                      // Use the fetched data here if needed
+                    });
                   },
                   icon: Icon(Icons.search),
-                  color: Colors.pink, // Customize the color of the search icon
+                  color: Color.fromARGB(255, 70, 70,
+                      70), // Customize the color of the search icon
                 ),
               ],
             ),
@@ -72,7 +117,7 @@ class _SearchState extends State<Search> {
               // Use GridView.builder
               shrinkWrap:
                   true, // This is important to allow the GridView to work inside a Column
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, // Number of columns in the grid
                 crossAxisSpacing: 8.0, // Spacing between columns
                 mainAxisSpacing: 8.0, // Spacing between rows
@@ -82,13 +127,9 @@ class _SearchState extends State<Search> {
               itemBuilder: (context, index) {
                 // Build each grid item
                 final isSelected = index == _selectedItemIndex;
-                final color = isSelected
-                    ? Colors.pink
-                    : Color.fromARGB(255, 249, 208, 225);
-
-                final textcolor= isSelected
-                    ? Colors.white
-                    : Color.fromARGB(255, 6, 1, 3);
+                final color = isSelected ? iconcolor : iconcolor2;
+                final border = isSelected ? iconcolor : Colors.transparent;
+                final textcolor = isSelected ? Colors.white : Colors.white;
                 return InkWell(
                   onTap: () {
                     setState(() {
@@ -96,14 +137,24 @@ class _SearchState extends State<Search> {
                     });
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(27),
                     child: Container(
-                      color: color, // Background color of each grid item
+                      decoration: BoxDecoration(
+                        color: color,
+                        border: Border.all(
+                          color:
+                              border, // Set the border color to purple when selected
+                          width: 2.0, // Set the border width as desired
+                        ),
+                      ),
+                      // color: color, // Background color of each grid item
                       child: Center(
                         child: Text(
                           items[index],
                           style: TextStyle(
-                              color: textcolor), // Customize the text color
+                              color: textcolor,
+                              fontWeight:
+                                  FontWeight.w300), // Customize the text color
                         ),
                       ),
                     ),
@@ -112,6 +163,38 @@ class _SearchState extends State<Search> {
               },
             ),
           ),
+
+          show?
+                          Container(
+                            child: FutureBuilder<List<Map<String, dynamic>>>(
+                                // future: Future.error('some error'),
+
+                                      future: fetchSearchData(text),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState == ConnectionState.waiting) {
+                                          return CircularProgressIndicator();
+                                        } else if (snapshot.hasError) {
+                                          return Text('Error: ${snapshot.error}');
+                                        } else {
+                                          // Render ListTiles based on fetched search data
+                                          return Column(
+                                            children: snapshot.data!
+                                                .map(
+                                                  (item) => ListTile(
+                            title: Text(item['title']),
+                            subtitle: Text(item['subtitle']),
+                            // Customize ListTile based on your API data
+                            // ... (Add more ListTile properties as needed)
+                                                  ),
+                                                )
+                                                .toList(),
+                                          );
+                                        }
+                                      },
+                                    ),
+                          ):Container()
+
+
           // Listsmall()
         ],
       ),

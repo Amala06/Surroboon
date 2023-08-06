@@ -3,6 +3,7 @@ import 'package:suro/chatmodel.dart';
 import 'package:suro/customUI/individual_chat.dart';
 
 class CustomCard extends StatelessWidget {
+  
   const CustomCard({Key? key, this.chatmodel, required this.sourcechat})
       : super(key: key);
   final Chatmodel? chatmodel;
