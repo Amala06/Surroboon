@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:suro/HomeM.dart';
 import 'package:suro/appstate.dart';
+import 'package:suro/beforeflow.dart';
 import 'package:suro/chathome.dart';
 import 'package:suro/constants.dart';
 import 'package:suro/customUI/loginscreen.dart';
@@ -133,11 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Divider(thickness: 1,),
             ListTile(
-              title: Text('Dialog Flow'),
+              title: Text('Aria AI BOT'),
               onTap: () {
                 _onDrawerItemClicked();
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => SplashScreenScreen()));
               },
             ),
                         Divider(

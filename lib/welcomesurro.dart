@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:suro/constants.dart';
 import 'package:suro/createAccountSurro.dart';
+import 'package:suro/customUI/yo.dart';
 import 'package:suro/main.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -49,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CreateAccountSurro()),
+                        builder: (context) => LoginScreen()),
                   );
                   // );
                 },
