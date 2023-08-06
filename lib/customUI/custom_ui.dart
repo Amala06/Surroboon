@@ -25,7 +25,7 @@ class CustomCard extends StatelessWidget {
           ListTile(
             leading: const CircleAvatar(
               radius: 30,
-              backgroundColor: Color.fromARGB(255, 245, 209, 221),
+              backgroundColor: Color.fromARGB(255, 189, 186, 245),
               child: Icon(Icons.person),
             ),
             title: Text(chatmodel?.name ?? "Name Not Available",

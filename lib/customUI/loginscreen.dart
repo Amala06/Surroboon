@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                              chatmodels: chatmodels, sourcechat: sourcechat)));
               },
               child: ButtonCard(
-                  name: chatmodels[index].name, icon: Icons.person))),
+                  name: chatmodels[index].name,))),
     );
   }
 }
