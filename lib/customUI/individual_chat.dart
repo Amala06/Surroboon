@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:suro/appstate.dart';
 import 'package:suro/bond.dart';
 import 'package:suro/chatmodel.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/customUI/own_message.dart';
 import 'package:suro/customUI/reply_msg.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -96,7 +97,7 @@ String timee= DateTime.now().toString().substring(10,16)  ;
       appBar: AppBar(
         leadingWidth: 70,
         titleSpacing: 0,
-        backgroundColor: Colors.pink,
+        backgroundColor: iconcolor,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -167,7 +168,7 @@ String timee= DateTime.now().toString().substring(10,16)  ;
                               color: Colors.white),
                         ),
                     Text(
-                      'Last seen today at 12:05',
+                      'Last seen today at $timee',
                       style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 248, 247, 247)),
                     ),
                   ],
@@ -268,7 +269,7 @@ String timee= DateTime.now().toString().substring(10,16)  ;
                                 const EdgeInsets.only(bottom: 8, right: 3, left: 2),
                             child: CircleAvatar(
                               radius: 25,
-                              backgroundColor: Colors.pink,
+                              backgroundColor: iconcolor,
                               child: IconButton(
                                 icon: Icon(
                                   Icons.send,

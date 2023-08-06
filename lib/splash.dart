@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
       body: Container(
         // child: Text("Splash Screen"),
         child: Image.asset(
-          "assets/images/sp.png",
+          "assets/images/sp2.png",
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity, // Set the desired width

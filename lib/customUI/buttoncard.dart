@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ButtonCard extends StatelessWidget {
-  const ButtonCard({Key? key,required this.name,required this.icon}):super(key: key);
+  const ButtonCard({Key? key,required this.name}):super(key: key);
 final String name;
-final IconData icon;
+// final IconData icon;
   @override
   Widget build(BuildContext context) {
     return ListTile(

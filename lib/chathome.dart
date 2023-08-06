@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:suro/chatmodel.dart';
+import 'package:suro/constants.dart';
 import 'package:suro/customUI/custom_ui.dart';
 
 class ChatHome extends StatefulWidget {
@@ -43,10 +44,10 @@ class _ChatHomeState extends State<ChatHome> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Surroboon Chat",
+            "surroboon chat",
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.pink,
+          backgroundColor: iconcolor,
           actions: [
             IconButton(
               onPressed: null,
@@ -69,7 +70,7 @@ class _ChatHomeState extends State<ChatHome> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          backgroundColor: Colors.pink, // Set background color to pink
+          backgroundColor: iconcolor, // Set background color to pink
           foregroundColor: Colors.white, // Set icon color to white
           child: Icon(Icons.chat),
         ),

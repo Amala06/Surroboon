@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suro/constants.dart';
 
 class OwnMessage extends StatelessWidget {
   const OwnMessage({Key ?key,required this.message,required this.time}):super(key: key);
@@ -17,7 +18,7 @@ class OwnMessage extends StatelessWidget {
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),),
           margin: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-          color: Colors.pink,
+          color: iconcolor,
           child: Stack(
             children: [
               Padding(
