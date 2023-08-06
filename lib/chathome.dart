@@ -4,8 +4,9 @@ import 'package:suro/constants.dart';
 import 'package:suro/customUI/custom_ui.dart';
 
 class ChatHome extends StatefulWidget {
-  const ChatHome({Key? key, required this.chatmodels, required this.sourcechat}) : super(key: key);
-  final List<Chatmodel>chatmodels;
+  const ChatHome({Key? key, required this.chatmodels, required this.sourcechat})
+      : super(key: key);
+  final List<Chatmodel> chatmodels;
   final Chatmodel sourcechat;
 
   @override
@@ -44,7 +45,7 @@ class _ChatHomeState extends State<ChatHome> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "surroboon chat",
+            "Surroboon chat",
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: iconcolor,
@@ -80,7 +81,6 @@ class _ChatHomeState extends State<ChatHome> {
             chatmodel: widget.chatmodels?[index],
             sourcechat: widget.sourcechat,
           ),
-        )
-        );
+        ));
   }
 }

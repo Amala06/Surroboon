@@ -296,15 +296,15 @@ class Profile extends StatelessWidget {
                       child: Container(
                         width: 300, // Adjust the width as needed
                         child: Divider(
-                          color: Colors.black,
-                          thickness: 1.0,
+                          color: greys,
+                          thickness: 1.2,
                         ),
                       ),
                     ),
                   ],
                 ),
 
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -363,8 +363,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         width: 300, // Adjust the width as needed
                         child: Divider(
-                          color: Colors.black,
-                          thickness: 1.0,
+                          color: greys,
+                          thickness: 1.2,
                         ),
                       ),
                     ),

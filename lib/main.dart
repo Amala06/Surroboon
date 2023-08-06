@@ -109,16 +109,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: iconcolor, // Change the color of the drawer here
-              ),
-              child: Text(
-                'Dashboard',
-                style: TextStyle(
-                    color: Colors.white, // Change the color of the text here
-                    fontSize: 19,
-                    fontWeight: FontWeight.w300),
+            Container(
+              width: 200,
+              height: 100,
+              child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: iconcolor,
+                  // Change the color of the drawer here
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                  child: Text(
+                    'Dashboard',
+                    style: TextStyle(
+                        color:
+                            Colors.white, // Change the color of the text here
+                        fontSize: 20,
+                        letterSpacing: 1.2,
+                        fontWeight: FontWeight.w800),
+                  ),
+                ),
               ),
             ),
             ListTile(
@@ -135,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               thickness: 1,
             ),
             ListTile(
-              title: Text('Dialog Flow'),
+              title: Text('Aria AI Bot'),
               onTap: () {
                 _onDrawerItemClicked();
                 Navigator.push(

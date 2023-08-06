@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Aria',
+          'Aria AI Bot',
           style: TextStyle(color: iconcolor, fontWeight: FontWeight.bold),
         ),
       ),

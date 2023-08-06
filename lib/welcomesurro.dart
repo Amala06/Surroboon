@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suro/chatInit.dart';
 import 'package:suro/constants.dart';
 import 'package:suro/createAccountSurro.dart';
 import 'package:suro/main.dart';
@@ -48,8 +49,7 @@ class WelcomePage extends StatelessWidget {
                   // For example, you can navigate to the next page using:
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateAccountSurro()),
+                    MaterialPageRoute(builder: (context) => ChatInit()),
                   );
                   // );
                 },

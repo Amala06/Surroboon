@@ -100,6 +100,8 @@ class _ChatInitState extends State<ChatInit> {
     chatlistformation(); // Call the chatlistformation function here
   }
 
+  
+
   void chatlistformation() async {
     final appState = Provider.of<AppState>(context, listen: false);
 

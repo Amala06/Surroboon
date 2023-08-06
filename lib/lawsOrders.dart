@@ -18,73 +18,9 @@ class TermsConditionsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Surrogate Rights',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: iconcolor,
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Section(
-                title: 'Informed Consent',
-                content:
-                    'Surrogates have the right to fully understand the surrogacy process, potential risks, and their role before agreeing to participate.',
-              ),
-              Section(
-                title: 'Medical and Emotional Well-being',
-                content:
-                    'Surrogates should receive comprehensive medical care, psychological support, and counseling throughout the journey.',
-              ),
-              Section(
-                title: 'Financial Fairness',
-                content:
-                    'Surrogates have the right to receive fair compensation for their time, effort, and any associated expenses, as outlined in the surrogacy contract.',
-              ),
-              Section(
-                title: 'Decision-making',
-                content:
-                    'Surrogates have the right to be involved in decisions regarding medical procedures, birthing plans, and other aspects of the surrogacy journey.',
-              ),
-              Section(
-                title: 'Autonomy and Control',
-                content:
-                    ' Surrogates maintain the right to make choices about their lifestyle, diet, and activities during the pregnancy, within the bounds of the agreed-upon contract.',
-              ),
-              Section(
-                  title: 'Confidentiality',
-                  content:
-                      'Surrogates have the right to privacy regarding their personal information and participation in the surrogacy process.'),
-              Section(
-                title: 'Respect and Dignity',
-                content:
-                    'Surrogates should be treated with respect, empathy, and consideration for their emotional and physical well-being.',
-              ),
-              Section(
-                  title: 'Legal Protection',
-                  content:
-                      ' Surrogates have the right to legal representation to ensure their interests are safeguarded in the surrogacy agreement and throughout the process.'),
-              Section(
-                title: 'Healthcare Choices',
-                content:
-                    'Surrogates can make decisions about their medical care and interventions during pregnancy, ensuring their health and well-being are prioritized.',
-              ),
-              Section(
-                title: 'Emotional Support',
-                content:
-                    ' Surrogates deserve emotional support and understanding from intended parents, acknowledging the unique emotional journey they undertake.',
-              ),
-              Section(
-                title: 'Childs Best Interests',
-                content:
-                    ' Surrogates have the right to advocate for the childs best interests, including decisions related to prenatal care and birthing preferences.',
-              ),
               // Add more sections for terms
 
-              SizedBox(
-                  height:
-                      40.0), // Add some spacing between terms and conditions
+              // Add some spacing between terms and conditions
 
               Text(
                 'Intended Parents Rights',
@@ -185,6 +121,71 @@ class TermsConditionsPage extends StatelessWidget {
                 title: 'Future Planning',
                 content:
                     'Intended parents have the right to discuss and plan for the childs future, including issues related to healthcare, education, and inheritance.',
+              ),
+
+              SizedBox(height: 40.0),
+
+              Text(
+                'Surrogate Rights',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: iconcolor,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Section(
+                title: 'Informed Consent',
+                content:
+                    'Surrogates have the right to fully understand the surrogacy process, potential risks, and their role before agreeing to participate.',
+              ),
+              Section(
+                title: 'Medical and Emotional Well-being',
+                content:
+                    'Surrogates should receive comprehensive medical care, psychological support, and counseling throughout the journey.',
+              ),
+              Section(
+                title: 'Financial Fairness',
+                content:
+                    'Surrogates have the right to receive fair compensation for their time, effort, and any associated expenses, as outlined in the surrogacy contract.',
+              ),
+              Section(
+                title: 'Decision-making',
+                content:
+                    'Surrogates have the right to be involved in decisions regarding medical procedures, birthing plans, and other aspects of the surrogacy journey.',
+              ),
+              Section(
+                title: 'Autonomy and Control',
+                content:
+                    ' Surrogates maintain the right to make choices about their lifestyle, diet, and activities during the pregnancy, within the bounds of the agreed-upon contract.',
+              ),
+              Section(
+                  title: 'Confidentiality',
+                  content:
+                      'Surrogates have the right to privacy regarding their personal information and participation in the surrogacy process.'),
+              Section(
+                title: 'Respect and Dignity',
+                content:
+                    'Surrogates should be treated with respect, empathy, and consideration for their emotional and physical well-being.',
+              ),
+              Section(
+                  title: 'Legal Protection',
+                  content:
+                      ' Surrogates have the right to legal representation to ensure their interests are safeguarded in the surrogacy agreement and throughout the process.'),
+              Section(
+                title: 'Healthcare Choices',
+                content:
+                    'Surrogates can make decisions about their medical care and interventions during pregnancy, ensuring their health and well-being are prioritized.',
+              ),
+              Section(
+                title: 'Emotional Support',
+                content:
+                    ' Surrogates deserve emotional support and understanding from intended parents, acknowledging the unique emotional journey they undertake.',
+              ),
+              Section(
+                title: 'Childs Best Interests',
+                content:
+                    ' Surrogates have the right to advocate for the childs best interests, including decisions related to prenatal care and birthing preferences.',
               ),
               // Add more sections for conditions
             ],
